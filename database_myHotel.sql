@@ -8,6 +8,24 @@ CREATE TABLE informasiKamar (
   check (statusKamar in ('Available', 'Unavailable', 'Booked'))
 );
 
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (101,'Single',37,'Satu bed single',300000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (102,'Single',37,'Satu bed single',300000,'Booked');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (103,'Single',37,'Satu bed single',300000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (104,'Single',37,'Satu bed single',300000,'Unavailable');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (105,'Single',37,'Satu bed single',300000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (201,'Double',45,'Dua bed single, ada balkon',600000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (202,'Double',45,'Dua bed single, ada balkon',600000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (203,'Double',45,'Dua bed single, ada balkon',600000,'Booked');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (204,'Double',45,'Dua bed single, ada balkon',600000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (205,'Double',45,'Dua bed single, ada balkon',600000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (301,'Deluxe',53,'Satu bed king, ada balkon, ada ruang tamu',1000000,'Unavailable');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (302,'Deluxe',53,'Satu bed king, ada balkon, ada ruang tamu',1000000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (303,'Deluxe',53,'Satu bed king, ada balkon, ada ruang tamu',1000000,'Available');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (304,'Deluxe',53,'Satu bed king, ada balkon, ada ruang tamu',1000000,'Booked');
+INSERT INTO informasiKamar(nomorKamar,tipeKamar,luasKamar,fasilitas,hargaPerMalam,statusKamar) VALUES (305,'Deluxe',53,'Satu bed king, ada balkon, ada ruang tamu',1000000,'Available');
+
+SELECT * FROM informasiKamar;
+
 CREATE TABLE riwayatKamar (
   nomorKamar INT PRIMARY KEY,
   totalDipesan INT NOT NULL,
