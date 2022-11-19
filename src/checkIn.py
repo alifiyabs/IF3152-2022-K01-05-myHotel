@@ -1,4 +1,13 @@
+# Check In
+# Penanggung Jawab: 18220069 Alifiya Brizita Shary
+
+
+import sys
 import datetime
+import tkinter as tk
+from tkinter import *
+import mysql.connector
+import os
 
 nikPelanggan = int
 
