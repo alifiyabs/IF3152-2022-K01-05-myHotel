@@ -22,6 +22,9 @@ def homescreen(screen):
     screenhome.geometry("1270x690")
     screenhome.configure(bg="white")
     
+    MyHotellabelTitle = tk.Label(screenhome,text="myHotel",font=("helvetica",20,"bold"),bg="white",fg="black",width=100,anchor='w').place(x=550,y=100)
+    MenuUtamalabelTitle = tk.Label(screenhome,text="Menu Utama",font=("helvetica",10,"bold"),bg="white",fg="black",width=100,anchor='w').place(x=560,y=140)
+    
     #button Informasi Kamar
     InfoKamarBut = tk.Button(screenhome,text="informasi kamar").place(x=190,y=270,width=150,height=150)
 
