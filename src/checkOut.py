@@ -32,6 +32,11 @@ def home(layar):
     # Judul halaman
     showTitle(screen)
     showSectionTitle(screen)
+    
+    # Kembali ke home
+    def backToHome():
+        from home import homescreen
+        homescreen(screen)
 
     # Entry box nomor kamar
     Label(screen, text = "Nomor Kamar", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
@@ -40,7 +45,8 @@ def home(layar):
 
     # Button next menuju verifikasi kamar
     Button(screen, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = verifyKamar).place(x = 670, y = 320)
-
+    Button(screen, text = "Kembali ke menu utama", font = ("Helvetica", 10, "bold"), bg="red", width = 10, height = 1, command = backToHome).place(x = 99, y = 113, width=180, height=49)
+    
     screen.mainloop()
 
 def verifyKamar():
