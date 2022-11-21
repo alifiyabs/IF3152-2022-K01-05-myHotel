@@ -55,6 +55,12 @@ def Riwayat(screen):
         i = i + 1
 
     conn.close()
+    
+    def kembaliHome():
+        from home import homescreen
+        homescreen(root)
+
+    KembaliBut = tk.Button(root,text="Kembali ke Menu Utama",command=kembaliHome).place(x=99,y=113,width=180,height=49)
 
     scrollbar.config(command = tree.yview)
     # root.resizable(False, False)
