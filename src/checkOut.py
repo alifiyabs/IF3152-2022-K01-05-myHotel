@@ -1,10 +1,10 @@
 # Check Out
 # Penanggung jawab: Theodore Justin Lionar 18220011
 
-# Progress: Sudah berfungsi
-# Prerequisite: install tkcalendar, tkinter, mariadb, pastikan semua library ada
-# Prerequisite: database mariadb dengan nama myhotel sudah ada
-# Notes: Replace ***** dengan password database
+# Prerequisite: Library tkcalendar, tkinter, mariadb
+# Prerequisite: Database mariadb dengan nama myhotel
+# Notes: Replace ***** dengan password database mariadb
+# Notes: Warna yang dipakai #F7F0F5, #DECBB7, #8F857D
 
 import sys
 from tkinter import *
@@ -23,7 +23,7 @@ def home(layar):
     screen = Tk()
     screen.title("myHotel")
     screen.geometry("1270x690")
-    screen.config(bg = "white")
+    screen.config(bg = "#F7F0F5")
     
     global noKamar
     global nomorKamar_var
@@ -32,21 +32,20 @@ def home(layar):
     # Judul halaman
     showTitle(screen)
     showSectionTitle(screen)
-    
-    # Kembali ke home
+
     def backToHome():
         from home import homescreen
         homescreen(screen)
 
     # Entry box nomor kamar
-    Label(screen, text = "Nomor Kamar", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
-    nomorKamar_var = Entry(screen, textvariable = noKamar, font=("Helvetica", 15), bg = "light grey", fg = "black")
-    nomorKamar_var.place(x = 500, y = 250, width = 300, height = 30)
+    Label(screen, text = "Nomor Kamar", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 220)
+    nomorKamar_var = Entry(screen, textvariable = noKamar, font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
+    nomorKamar_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
 
     # Button next menuju verifikasi kamar
-    Button(screen, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = verifyKamar).place(x = 670, y = 320)
-    Button(screen, text = "Kembali ke menu utama", font = ("Helvetica", 10, "bold"), bg="red", width = 10, height = 1, command = backToHome).place(x = 99, y = 113, width=180, height=49)
-    
+    Button(screen, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = verifyKamar).place(x = 785, y = 320,anchor="ne")
+    Button(screen, text = "Kembali ke Menu Utama", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHome).place(x = 75, y = 75, width=180, height=50)
+
     screen.mainloop()
 
 def verifyKamar():
@@ -86,7 +85,7 @@ def kamarValid(screen):
     screen1 = Tk()
     screen1.title("myHotel")
     screen1.geometry("1270x690")
-    screen1.config(bg = "white")
+    screen1.config(bg = "#F7F0F5")
 
     showTitle(screen1)
     showSectionTitle(screen1)
@@ -100,20 +99,20 @@ def kamarValid(screen):
     NIKPelanggan = StringVar()
 
     # Entry box NIK
-    Label(screen1, text = "NIK Pelanggan", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
-    NIKPelanggan_var = Entry(screen1, textvariable = NIKPelanggan, font=("Helvetica", 15), bg = "light grey", fg = "black")
-    NIKPelanggan_var.place(x = 500, y = 250, width = 300, height = 30)
+    Label(screen1, text = "NIK Pelanggan", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 220)
+    NIKPelanggan_var = Entry(screen1, textvariable = NIKPelanggan, font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
+    NIKPelanggan_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
 
     # Entry box tanggal check out
-    Label(screen1, text = "Tanggal Check Out", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 320)
+    Label(screen1, text = "Tanggal Check Out", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 320)
     cal = Calendar(screen1, selectmode = 'day', date_pattern = 'yyyy-mm-dd')
-    cal.place(x = 500, y = 350, width = 300, height = 200)
+    cal.place(x = 485, y = 320, width = 300, height = 200)
 
     # Button next menuju ambil tanggal dan verifikasi data
-    Button(screen1, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = getDate).place(x = 670, y = 580)
+    Button(screen1, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = getDate).place(x = 785, y = 550,anchor="ne")
     
     # Button back menuju halaman utama check out
-    Button(screen1, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = ulangiCheckOut).place(x = 500, y = 580)
+    Button(screen1, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 550)
 
     screen1.mainloop()
 
@@ -195,7 +194,7 @@ def validateCheckOut(screen1):
     screen2 = Tk()
     screen2.title("myHotel")
     screen2.geometry("1270x690")
-    screen2.config(bg = "white")
+    screen2.config(bg = "#F7F0F5")
 
     showTitle(screen2)
     showSectionTitle(screen2)
@@ -210,10 +209,10 @@ def validateCheckOut(screen1):
     cetakValidateCheckOut()
 
     # Button next menuju konfirmasi check out
-    Button(screen2, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = confirmationCheckOut).place(x = 670, y = 580)
+    Button(screen2, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = confirmationCheckOut).place(x = 785, y = 400,anchor="ne")
     
     # Button back menuju halaman utama check out
-    Button(screen2, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = ulangiCheckOut).place(x = 500, y = 580)
+    Button(screen2, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 400)
 
     screen2.mainloop()
 
@@ -246,13 +245,17 @@ def cetakValidateCheckOut():
     # Tampilkan informasi dalam bentuk tabel
     columns = (1,2,3,4,5,6)
     tree = ttk.Treeview(screen2, height = 1, columns = columns, show = 'headings')
-    tree.place(x = 40, y = 220)
+    tree.place(x = 635, y = 220,anchor="n")
     tree.heading(1, text= "Nomor Kamar")
     tree.heading(2, text= "Nama Tamu")
     tree.heading(3, text= "NIK Tamu")
     tree.heading(4, text= "Tanggal Check In")
     tree.heading(5, text= "Tanggal Check Out")
     tree.heading(6, text= "Total Tagihan")
+
+    style = ttk.Style()
+    style.configure('Treeview',font=("helvetica",10),background='#DECBB7',foreground='black',fieldbackground='#F7F0F5',rowheight=25)
+    style.map('Treeview',background=[("selected","#8F857D")],foreground=[("selected","#F7F0F5")])
 
     i = 1
     for (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut, totalTagihan) in cur:
@@ -268,7 +271,7 @@ def confirmCheckOut(screen2):
     screen3 = Tk()
     screen3.title("myHotel")
     screen3.geometry("1270x690")
-    screen3.config(bg = "white")
+    screen3.config(bg = "#F7F0F5")
 
     showTitle(screen3)
     showSectionTitle(screen3)
@@ -276,13 +279,13 @@ def confirmCheckOut(screen2):
     def returntoValidateCheckOut():
         validateCheckOut(screen3)
     
-    Label(screen3, text = "Lakukan check out?", font = ("Helvetica", 15, "bold"), bg="white").place(x = 550, y = 220)
+    Label(screen3, text = "Lakukan check out?", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="n")
     
     # Button ya untuk melakukan proses check out
-    Button(screen3, text = "Ya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = processCheckOut).place(x = 670, y = 580)
+    Button(screen3, text = "Ya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = processCheckOut).place(x = 785, y = 320,anchor="ne")
     
     # Button tidak untuk kembali ke halaman validasi check out
-    Button(screen3, text = "Tidak", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = returntoValidateCheckOut).place(x = 500, y = 580)
+    Button(screen3, text = "Tidak", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = returntoValidateCheckOut).place(x = 485, y = 320)
 
     screen3.mainloop()
 
@@ -343,7 +346,7 @@ def successCheckOut(screen3):
     screen4 = Tk()
     screen4.title("myHotel")
     screen4.geometry("1270x690")
-    screen4.config(bg = "white")
+    screen4.config(bg = "#F7F0F5")
 
     showTitle(screen4)
     showSectionTitle(screen4)
@@ -351,16 +354,17 @@ def successCheckOut(screen3):
     def checkOutAgain():
         home(screen4)
     
-    def finishCheckOut():
-        screen4.destroy()
+    def backToHome():
+        from home import homescreen
+        homescreen(screen4)
 
-    Label(screen4, text = "Check out berhasil dilakukan!", font = ("Helvetica", 15, "bold"), bg="white").place(x = 510, y = 220)
+    Label(screen4, text = "Check out berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="n")
     
     # Button selesai untuk keluar (nanti kembali ke main menu)
-    Button(screen4, text = "Selesai", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = finishCheckOut).place(x = 670, y = 580)
+    Button(screen4, text = "Selesai", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = backToHome).place(x = 785, y = 320,anchor="ne")
     
     # Button kembali untuk menuju ke halaman utama check out
-    Button(screen4, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = checkOutAgain).place(x = 500, y = 580)
+    Button(screen4, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = checkOutAgain).place(x = 485, y = 320)
 
     screen4.mainloop()
 
@@ -387,7 +391,7 @@ def databaseFail(screen):
     screen5 = Tk()
     screen5.title("myHotel")
     screen5.geometry("1270x690")
-    screen5.config(bg = "white")   
+    screen5.config(bg = "#F7F0F5")   
 
     showTitle(screen5)
     showSectionTitle(screen5)
@@ -395,15 +399,15 @@ def databaseFail(screen):
     def ulangiCheckOut():
         ulangi(screen5)
 
-    Label(screen5, text = "Kegagalan Sistem!", font = ("Helvetica", 15, "bold"), bg="white").place(x = 555, y = 220)
-    Button(screen5, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = ulangiCheckOut).place(x = 500, y = 580)
+    Label(screen5, text = "Kegagalan Sistem!", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="center")
+    Button(screen5, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 580)
 
     screen5.mainloop()
 
 # Menampilkan judul aplikasi
 def showTitle(screen):
-    Label(screen, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 590, y = 100)
+    Label(screen, text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=100,anchor="center")
 
 # Menampilkan judul section check out
 def showSectionTitle(screen):
-    Label(screen, text = "Check-Out", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 140)
+    Label(screen, text="Check-out",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
