@@ -14,63 +14,91 @@ from datetime import date
 
 
 def homeCheckIn(halaman):
-    global screen
+    global window
     halaman.destroy()
-    screen = Tk()
-    screen.title("myHotel")
-    screen.geometry("1270x690")
-    screen.config(bg="white")
-        
-    # Title
-    Label(screen, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 610, y = 100)
-    # Section Title
-    Label(screen, text = "Check In", font = ("Helvetica", 12, "bold"), bg="white").place(x = 610, y = 140)
-        
+    window = Tk()
+    window.title("myHotel")
+    window.geometry("1270x690")
+    window.config(bg="white")
+    
+    # Tampilan Judul myHotel dan Judul Check In
+    showTitle(window)
+    showTitleCheckIn(window)
+
     # Button bookingCheckIn menuju ke bookingCheckIn
-    Button(screen, text = "Booking Check In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = BookingCheckIn).place(x = 250, y = 300)
-
+    Button(window, text = "Booking Check In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 20, height = 2, command = BookingCheckIn).place(x = 450, y = 300)
     # Button checkInWalkIn menuju ke checkInWalkIn
-    Button(screen, text = "Check In Walk In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = "verifyBooking").place(x = 750, y = 300)
-        
-    screen.mainloop()
+    Button(window, text = "Check In Walk In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 20, height = 2, command = checkInWalkIn).place(x = 750, y = 300)
+    # Button kembali ke menu utama
+    Button(window, text = "Kembali ke menu utama", font = ("Helvetica", 10, "bold"), bg="red", width = 10, height = 1, command = backToHomescreen).place(x = 99, y = 113, width=180, height=49)
+   
+    window.mainloop()
 
-def BookingCheckIn(screen):
+def BookingCheckIn(window):
     global screenBooking
-    screen.destroy()
+    window.destroy()
     screenBooking = Tk()
     screenBooking.title("myHotel")
     screenBooking.geometry("1270x690")
     screenBooking.config(bg="white")
 
-    global nikPelanggan
-    global noKamar
-    global inputNikPelanggan
-    global inputnoKamar
-    nikPelanggan = StringVar()
-    noKamar = StringVar()
-
+    global nikPelangganBook
+    global noKamarBook
+    global nikPelangganBook_var
+    global noKamarBook_var
+    nikPelangganBook = StringVar()
+    noKamarBook = StringVar()
 
     # Title
-    Label(screenBooking, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 610, y = 100)
+    (screenBooking)
     # Sectione Title
-    Label(screenBooking, text = "Booking Check In", font = ("Helvetica", 12, "bold"), bg="white").place(x = 610, y = 140)
+    Label(screenBooking, text = "Booking Check-In", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 140)
 
     # Entry box NIK Pelanggan
     Label(screenBooking, text = "NIK Pelanggan", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
-    inputNikPelanggan = Entry(screenBooking, textvariable= nikPelanggan,font=("Helvetica", 15), bg = "light grey", fg = "black")
-    inputNikPelanggan.place(x = 500, y = 250, width = 300, height = 30)
+    nikPelangganBook_var = Entry(screenBooking, textvariable= nikPelangganBook,font=("Helvetica", 15), bg = "light grey", fg = "black")
+    nikPelangganBook_var.place(x = 500, y = 250, width = 300, height = 30)
 
     # Entry box Nomor Kamar 
-    Label(screenBooking, text = "Nomor Kamar ", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 240)
-    inputNikPelanggan = Entry(screenBooking, textvariable= nikPelanggan,font=("Helvetica", 15), bg = "light grey", fg = "black")
-    inputNikPelanggan.place(x = 500, y = 270, width = 300, height = 30)
+    Label(screenBooking, text = "Nomor Kamar ", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 320)
+    noKamarBook_var= Entry(screenBooking, textvariable= noKamarBook,font=("Helvetica", 15), bg = "light grey", fg = "black")
+    noKamarBook_var.place(x = 500, y = 350, width = 300, height = 30)
 
     # Button next menuju cek ketersediaan kamar 
-    Button(screenBooking, text = "Cek Kamar",font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = verifyBookingCheckIn).place(x = 500, y = 320)
+    Button(screenBooking, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = showCheckInBookingValid).place(x = 670, y = 580)
 
+    verifikasiBookingCheckIn()
+    
     screenBooking.mainloop()
 
-def verifyBookingCheckIn():
+def checkInWalkIn(window):
+    global screenWalkIn
+    window.destroy()
+    screenWalkIn = Tk()
+    screenWalkIn.title("myHotel")
+    screenWalkIn.geometry("1270x690")
+    screenWalkIn.config(bg="white")
+
+    global noKamarWalkIn
+    global noKamarWalkIn_var
+    noKamarWalkIn = StringVar()
+
+    # Entry nomor kamar
+    showTitle(screenWalkIn)
+
+    Label(screenWalkIn, text = "Nomor Kamar", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
+    noKamarWalkIn_var = Entry(screenWalkIn, textvariable = noKamarWalkIn, font=("Helvetica", 15), bg = "light grey", fg = "black")
+    noKamarWalkIn_var.place(x = 500, y = 250, width = 300, height = 30)
+
+    # Button Cek ketersediaan kamar
+  
+    Button(screenWalkIn, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = " ").place(x = 670, y = 580)
+    
+    verifikasiCheckInWalkIn()
+
+    screenWalkIn.mainloop()
+
+def verifikasiBookingCheckIn():
     # Buka koneksi dengan database mysql
 
     try:
@@ -88,33 +116,87 @@ def verifyBookingCheckIn():
     cur = conn.cursor()
     try:
         statement = "SELECT NIK, nomorKamar, statusPengunjung FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
-        data = (int(nikPelanggan.get()), int(noKamar.get()), "Book",)
+        data = (int(nikPelangganBook.get()), int(noKamarBook.get()), "Book",)
         cur.execute(statement, data)
-        row = cur.fetchone()
-        if (row == None):
-            Label(screen, text = "Tidak dapat melakukan check in karena nomor kamar tidak valid!", fg = "red", font = ("Helvetica, 13")).pack()
-        else:
-            checkInValid(screen)
-    
     except mysql.connector.Error as e:
         print(f"Error retrieving entry form database: {e}")
 
+def verifikasiCheckInWalkIn():
+    
+    # Buka koneksi dengan database mysql
 
-def checkInValid(screen):
-    global screenValid
-    screen.destroy()
-    screenValid = Tk()
-    screenValid.title("myHotel")
-    screenValid.geometry("1270x690")
-    screenValid.config(bg = "white")
+    try:
+        conn = mysql.connector.connect (
+            user = 'root',
+            password = 'Bel2022Fiy@',
+            host = 'localhost',
+            database = 'myHotel'
+        )
+    except mysql.connector.Error as e:
+        print(f"Error connecting to Mysql Platform: {e}")
+        sys.exit(1)
+    
+    # Execute Query
+    cur = conn.cursor()
+    try:
+        statement = "SELECT nomorKamar FROM informasiKamar WHERE nomorKamar = %s AND statusKamar = %s"
+        data = (int(noKamarWalkIn_var.get()), "Available",)
+        cur.execute(statement, data)
+    except mysql.connector.Error as e:
+        print(f"Error retrieving entry form database: {e}")
 
-    # Title
-    Label(screenValid, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 610, y = 100)
-    # Section Title
-    Label(screenValid, text = "Check In", font = ("Helvetica", 12, "bold"), bg="white").place(x = 610, y = 140)
-    # Section Title
-    Label(screenValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 180)
+def isiDataPengunjung(screenWalkIn):
+    global screenFillData
+    screenWalkIn.destroy()
+    screenFillData = Tk()
+    screenFillData.title("myHotel")
+    screenFillData.geometry("1270x690")
+    screenFillData.config(bg = "white")
 
+    showTitle(screenFillData)
+    
+
+    global nikPelangganFill
+    global NIKPelangganFill_var
+    global namaPengunjungFill
+    global namaPengunjungFill_var
+    global calendar
+    nikPelangganFill = StringVar()
+    namaPengunjungFill = StringVar()
+
+    # Entry box NIK
+    Label(screenFillData, text = "NIK Pelanggan", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
+    nikPelangganFill_var = Entry(screenFillData, textvariable = nikPelangganFill, font=("Helvetica", 15), bg = "light grey", fg = "black")
+    nikPelangganFill_var.place(x = 500, y = 250, width = 300, height = 30)
+
+    # Entry box Nama Pelanggan
+    Label(screenFillData, text = "Nama Pelanggan", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 320)
+    namaPengunjungFill_var = Entry(screenFillData, textvariable = nikPelangganFill, font=("Helvetica", 15), bg = "light grey", fg = "black")
+    namaPengunjungFill_var.place(x = 500, y = 250, width = 300, height = 30)
+
+    # Entry box tanggal check in
+    Label(screenFillData, text = "Tanggal Check Out", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 320)
+    cal = Calendar(screenFillData, selectmode = 'day', date_pattern = 'yyyy-mm-dd')
+    cal.place(x = 500, y = 350, width = 300, height = 200)
+
+    # Button next menuju ambil tanggal dan verifikasi data
+    Button(screenFillData, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = " ").place(x = 670, y = 580)
+    
+    # Button back menuju halaman utama check out
+    Button(screenFillData, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = " ").place(x = 500, y = 580)
+
+    screenFillData.mainloop()
+
+
+def getCheckInDate():
+    global tglCheckIn
+    global calendar
+
+    tglCheckIn = calendar.get_date()
+
+def validateCheckInBooking():
+
+    # Connect to database
     try:
         conn = mysql.connector.connect (
             user = 'root',
@@ -128,23 +210,135 @@ def checkInValid(screen):
 
     cur = conn.cursor()
     try:
-        statement = "SELECT nomorKamar, namaPengunjung, NIK FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
-        data = (int(nikPelanggan.get()), int(noKamar.get()), "Book")
-
+        statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
+        data = (int(nikPelangganBook.get()), int(noKamarBook.get()), "Book")
+        cur.execute(statement, data)
     except mysql.connector.Error as e:
         print(f"Error retrieving entry from Database: {e}")
     
     # Tampilkan informasi dalam bentuk Tabel
-    columns = (1,2,3)
-    tree = ttk.Treeview(screenValid, height = 1, columns = columns, show = 'headings')
+    columns = (1,2,3,4,5)
+    tree = ttk.Treeview(screenBookValid, height = 1, columns = columns, show = 'headings')
     tree.place(x = 40, y = 220)
     tree.heading(1, text = "Nomor Kamar")
     tree.heading(2, text = "Nama Tamu")
     tree.heading(3, text = "NIK Tamu")
+    tree.heading(4, text = "Tanggal Check In")
+    tree.heading(5, text = "Tanggal Check Out")
+
 
     i = 1
-    for (nomorKamar, namaPengunjung, NIK, tanggalCheckIn) in cur:
-        tree.insert(parent='', index=i, text='', values = (nomorKamar, namaPengunjung, NIK, tanggalCheckIn))
+    for (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut) in cur:
+        tree.insert(parent='', index=i, text='', values = (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut))
         i += 1
     
     conn.commit()
+
+def validateCheckInWalkIn():
+
+    # Connect to database
+    try:
+        conn = mysql.connector.connect (
+            user = 'root',
+            password = 'Bel2022Fiy@',
+            host = 'localhost',
+            database = 'myHotel'
+        )
+    except mysql.connector.Error as e:
+        print(f"Error connecting to Mysql Platform: {e}")
+        sys.exit(1)
+
+    cur = conn.cursor()
+    try:
+        statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
+        data = (int(nikPelangganBook.get()), int(noKamarBook.get()), "Book")
+        cur.execute(statement, data)
+    except mysql.connector.Error as e:
+        print(f"Error retrieving entry from Database: {e}")
+    
+    # Tampilkan informasi dalam bentuk Tabel
+    columns = (1,2,3,4,5)
+    tree = ttk.Treeview(screenBookValid, height = 1, columns = columns, show = 'headings')
+    tree.place(x = 40, y = 220)
+    tree.heading(1, text = "Nomor Kamar")
+    tree.heading(2, text = "Nama Tamu")
+    tree.heading(3, text = "NIK Tamu")
+    tree.heading(4, text = "Tanggal Check In")
+    tree.heading(5, text = "Tanggal Check Out")
+
+
+    i = 1
+    for (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut) in cur:
+        tree.insert(parent='', index=i, text='', values = (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut))
+        i += 1
+    
+    conn.commit()
+
+def showCheckInBookingValid(screen):
+    global screenBookValid
+    screen.destroy()
+    screenBookValid = Tk()
+    screenBookValid.title("myHotel")
+    screenBookValid.geometry("1270x690")
+    screenBookValid.config(bg = "white")
+
+    # Title
+    showTitle(screenBookValid)
+    # Section Title
+    Label(screenBookValid, text = "Check In", font = ("Helvetica", 12, "bold"), bg="white").place(x = 610, y = 140)
+    # Section Title
+    Label(screenBookValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 180)
+
+    # Menampilkan data check in pengunjung yang valid
+    validateCheckInBooking()
+
+    screenBookValid.mainloop()
+
+def prosesCheckIn():
+    # Koneksi ke database
+    try:
+        conn = mysql.connector.connect (
+            user = 'root',
+            password = 'Bel2022Fiy@',
+            host = 'localhost',
+            database = 'myHotel'
+        )
+    except mysql.connector.Error as e:
+        print(f"Error connecting to Mysql Platform: {e}")
+        sys.exit(1)
+    
+    cur = conn.cursor()
+    try:
+        # Update status pengunjung check in booking menjadi check in pada tabel informasi tamu hotel
+        statement = "UPDATE informasiTamuHotel SET statusPengunjung = %s WHERE NIK = %s AND nomorKamar = %s"
+        data = ("Check-in", int(nikPelangganBook.get()), int(noKamarBook.get()),)
+        cur.execute(statement, data)
+
+        # Update status kamar dari available menjadi unavailable pada Booking Check In pada tabel informasi kamar
+        cur = conn.cursor()
+        statement = "UPDATE informasiKamar SET statusKamar = %s WHERE nomorKamar = %s"
+        data = ("Unavailable", int(noKamarBook.get()),)
+        cur.execute(statement, data)
+
+        # Insert data pengunjung baru pada tabel informasi tamu hotel
+        cur = conn.cursor()
+        statement = "INSERT INTO informasiTamuHotel (NIK, nomorKamar, tanggalCheckIn, tanggalCheckOut, namaPengunjung, statusPengunjung) VALUES (%s, %s, %s, %s, %s, %s)"
+        value = ("")
+
+    except mysql.connector.Error as e:
+        print(f"Error updating or retrieving entry form database: {e}")
+
+    conn.commit()
+
+def backToHomeCheckIn(screen):
+    homeCheckIn(screen)
+
+def backToHomescreen():
+    from home import homescreen
+    homescreen(window)
+
+def showTitle(screen):
+    Label(screen, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 590, y = 100)
+
+def showTitleCheckIn(screen):
+    Label(screen, text = "Check-In", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 140)
