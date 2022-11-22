@@ -4,7 +4,7 @@ import tkinter as tk
 import os
 from tkinter import ttk
 # import mysql.connector as mysql
-import mariadb
+import maridb
 from riwayat import Riwayat
 from checkOut import home
 
