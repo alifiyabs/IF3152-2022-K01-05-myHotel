@@ -12,20 +12,17 @@ def InfoKamar(screen):
     root = tk.Tk()
     root.title("Informasi Kamar")
     root.geometry('1270x690')
-    root.configure(bg='white')
+    root.configure(bg='#F7F0F5')
     
-    MyHotellabelTitle = tk.Label(root,text="myHotel",font=("helvetica",20,"bold"),bg="white",fg="black",width=100,anchor='w').place(x=550,y=100)
-    InformasilabelTitle = tk.Label(root,text="Informasi Kamar",font=("helvetica",10,"bold"),bg="white",fg="black",width=100,anchor='w').place(x=555,y=140)
-
-    scrollbar = tk.Scrollbar(root)
-    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+    MyHotellabelTitle = tk.Label(root,text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=100,anchor="center")
+    InformasilabelTitle = tk.Label(root,text="Informasi Kamar",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
 
     columns = (1,2,3,4,5,6)
     tree = ttk.Treeview(root, height=10, columns=columns, show='headings')
     tree.column(1,width=100)
     tree.column(2,width=100)
     tree.column(3,width=200)
-    tree.pack(side=tk.BOTTOM,fill=tk.Y,pady=20)
+    tree.place(x = 635, y = 220,anchor="n")
     tree.heading(1, text='Nomor Kamar')
     tree.heading(2, text='Tipe Kamar')
     tree.heading(3, text='Luas Kamar')
@@ -34,13 +31,13 @@ def InfoKamar(screen):
     tree.heading(6, text='Status Kamar')
 
     style = ttk.Style()
-    style.configure('Treeview',font=('helvetica,11'),background='lightgrey',foreground='black',fieldbackground='dodgerblue3',rowheight=40)
-    style.map('Treeview',background=[('selected','azure4')])
+    style.configure('Treeview',font=("helvetica",10),background='#DECBB7',foreground='black',fieldbackground='#F7F0F5',rowheight=25)
+    style.map('Treeview',background=[("selected","#8F857D")],foreground=[("selected","#F7F0F5")])
 
     try:
         conn = mariadb.connect(
             user='root',
-            password='****',
+            password='*****',
             host='localhost',
             database='myhotel'
         )
@@ -62,8 +59,7 @@ def InfoKamar(screen):
         from home import homescreen
         homescreen(root)
 
-    KembaliBut = tk.Button(root,text="Kembali ke Menu Utama",command=kembaliHome).place(x=99,y=113,width=180,height=49)
+    KembaliBut = tk.Button(root,text="Kembali ke Menu Utama",font = ("Helvetica", 10, "bold"),bg="#FF595E",command=kembaliHome).place(x = 75, y = 75, width=180, height=50)
     
-    scrollbar.config(command = tree.yview)
-    # root.resizable(False, False)
+    root.resizable(False, False)
     root.mainloop()
