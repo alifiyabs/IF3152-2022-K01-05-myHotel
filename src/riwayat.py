@@ -1,12 +1,17 @@
+# Check Out
+# Penanggung jawab: Kyla Aisha 18220093
+
+# Prerequisite: Library tkinter, mariadb
+# Prerequisite: Database mariadb dengan nama myhotel
+# Notes: Replace ***** dengan password database mariadb (hanya 1 field password)
+
 import sys
 import tkinter as tk
-# from PIL import Image, ImageTk
 import os
 from tkinter import ttk
-# import mysql.connector as mysql
 import mariadb
 
-
+# Layar utama riwayat
 def Riwayat(screen):
     global root
     screen.destroy()
@@ -15,9 +20,11 @@ def Riwayat(screen):
     root.geometry('1270x690')
     root.configure(bg='#F7F0F5')
     
+    # Judul Halaman
     MyHotellabelTitle = tk.Label(root,text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=100,anchor="center")
     RiwayatlabelTitle = tk.Label(root,text="Riwayat Kamar",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
 
+    # Menampilkan tabel
     columns = (1,2,3)
     tree = ttk.Treeview(root, height=10, columns=columns, show='headings')
     tree.column(1,width=100)
@@ -32,6 +39,7 @@ def Riwayat(screen):
     style.configure('Treeview',font=("helvetica",10),background='#DECBB7',foreground='black',fieldbackground='#F7F0F5',rowheight=25)
     style.map('Treeview',background=[("selected","#8F857D")],foreground=[("selected","#F7F0F5")])
 
+    # Mengakses database
     try:
         conn = mariadb.connect(
             user='root',
