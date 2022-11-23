@@ -1,4 +1,4 @@
-# Check Out
+# Riwayat Kamar
 # Penanggung jawab: Kyla Aisha 18220093
 
 # Prerequisite: Library tkinter, mariadb
