@@ -1,6 +1,3 @@
-# Check In
-# Penanggung Jawab: 18220069 Alifiya Brizita Shary
-
 import sys
 import datetime
 import mysql.connector
@@ -25,10 +22,17 @@ def homeCheckIn(halaman):
     showTitle(window)
     showTitleCheckIn(window)
 
+    # Buka halaman Booking Check In
+    def bukaBookingCheckIn():
+        BookingCheckIn(window)
+    # Buka halaman Booking Walk In
+    def bukaWalkIn():
+        checkInWalkIn(window)
+
     # Button bookingCheckIn menuju ke bookingCheckIn
-    Button(window, text = "Booking Check In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 20, height = 2, command = BookingCheckIn).place(x = 450, y = 300)
+    Button(window, text = "Booking Check In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 20, height = 2, command = bukaBookingCheckIn).place(x = 450, y = 300)
     # Button checkInWalkIn menuju ke checkInWalkIn
-    Button(window, text = "Check In Walk In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 20, height = 2, command = checkInWalkIn).place(x = 750, y = 300)
+    Button(window, text = "Check In Walk In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 20, height = 2, command = bukaWalkIn).place(x = 750, y = 300)
     # Button kembali ke menu utama
     Button(window, text = "Kembali ke menu utama", font = ("Helvetica", 10, "bold"), bg="red", width = 10, height = 1, command = backToHomescreen).place(x = 99, y = 113, width=180, height=49)
    
@@ -65,7 +69,7 @@ def BookingCheckIn(window):
     noKamarBook_var.place(x = 500, y = 350, width = 300, height = 30)
 
     # Button next menuju cek ketersediaan kamar 
-    Button(screenBooking, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = showCheckInBookingValid).place(x = 670, y = 580)
+    Button(screenBooking, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = " ").place(x = 670, y = 580)
 
     verifikasiBookingCheckIn()
     
@@ -274,9 +278,9 @@ def validateCheckInWalkIn():
     
     conn.commit()
 
-def showCheckInBookingValid(screen):
+def showCheckInBookingValid(screenBooking):
     global screenBookValid
-    screen.destroy()
+    screenBooking.destroy()
     screenBookValid = Tk()
     screenBookValid.title("myHotel")
     screenBookValid.geometry("1270x690")
@@ -330,8 +334,8 @@ def prosesCheckIn():
 
     conn.commit()
 
-def backToHomeCheckIn(screen):
-    homeCheckIn(screen)
+def backToHomeCheckIn():
+    homeCheckIn(window)
 
 def backToHomescreen():
     from home import homescreen
