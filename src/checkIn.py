@@ -4,7 +4,7 @@
 
 import sys
 import datetime
-import mysql.connector
+# import mysql.connector
 import tkinter as tk
 import datetime
 import os

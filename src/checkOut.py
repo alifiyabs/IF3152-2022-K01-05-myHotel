@@ -15,7 +15,7 @@ import tkinter as tk
 import datetime
 import os
 import mariadb
-from tagihan import infotagihan
+from tagihan import Tagihan
 
 # Layar utama menu check out
 def homeCheckOut(layar):
@@ -213,17 +213,18 @@ def validateCheckOut(screen1):
     
 
     # Button next menuju konfirmasi check out
-    Button(screen2, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = confirmationCheckOut).place(x = 785, y = 400,anchor="ne")
+    Button(screen2, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = confirmationCheckOut).place(x = 785, y = 550,anchor="ne")
     
     # Button back menuju halaman utama check out
-    Button(screen2, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 400)
+    Button(screen2, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 550)
 
     screen2.resizable(False,False)
     screen2.mainloop()
 
 # Cetak informasi kamar yang akan di-check out
 def cetakValidateCheckOut():
-    infotagihan(NIKPelanggan, noKamar, screen2)
+    tagihan = Tagihan(noKamar, NIKPelanggan)
+    tagihan.infotagihan(screen2)
 
 # Mengonfirmasi perlakuan check out
 def confirmCheckOut(screen2):
