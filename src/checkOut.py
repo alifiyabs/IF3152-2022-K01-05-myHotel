@@ -3,7 +3,7 @@
 
 # Prerequisite: Library tkcalendar, tkinter, mariadb
 # Prerequisite: Database mariadb dengan nama myhotel
-# Notes: Replace ***** dengan password database mariadb
+# Notes: Replace ***** dengan password database mariadb (ada 4 field password)
 # Notes: Warna yang dipakai #F7F0F5, #DECBB7, #8F857D https://coolors.co/f7f0f5-decbb7-8f857d-5c5552-433633
 
 import sys
@@ -157,16 +157,16 @@ def verifyData():
             tamuInvalid(screen1)
         else: 
             # Ambil tanggal check out database
-            statement = "SELECT tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s"
-            data = (int(NIKPelanggan.get()), int(noKamar.get()),)
+            statement = "SELECT tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
+            data = (int(NIKPelanggan.get()), int(noKamar.get()),"Check-in",)
             cur.execute(statement, data)
             row = cur.fetchone()
             for x in row:
                 tanggalCheckOutVerify = x
 
             # Ambil tanggal check in database
-            statement = "SELECT tanggalCheckIn FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s"
-            data = (int(NIKPelanggan.get()), int(noKamar.get()),)
+            statement = "SELECT tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
+            data = (int(NIKPelanggan.get()), int(noKamar.get()),"Check-in",)
             cur.execute(statement, data)
             row = cur.fetchone()
             for x in row:

@@ -1,5 +1,5 @@
-from home import homescreen
+from login import homeLogin
 from tkinter import *
 
 start = Tk()
-homescreen(start)
+homeLogin(start)
