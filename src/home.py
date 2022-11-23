@@ -43,5 +43,6 @@ def homescreen(screen):
     
     #button Pemesanan Makanan
     CheckOutBut = tk.Button(screenhome,text="Pemesanan Makanan",font=("helvetica",10,"bold"),bg="#DECBB7").place(x=760,y=420,width=150,height=75,anchor="center")
-
+    
+    screenhome.resizable(False,False)
     screenhome.mainloop()
