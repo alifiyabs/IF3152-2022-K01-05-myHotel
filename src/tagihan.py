@@ -1,3 +1,11 @@
+# Tagihan
+# Penanggung jawab: Rachita Caronica Jonur 18220091
+
+# Progress: Sudah berfungsi
+# Prerequisite: Install tkinter dan mariadb (beserta seluruh library yang diperlukan)
+# Prerequisite: Database mariadb dengan nama myhotel sudah ada
+# Notes: Replace password database, serta ganti port database jika diperlukan
+
 import sys 
 import mariadb
 import tkinter as tk
