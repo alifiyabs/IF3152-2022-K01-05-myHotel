@@ -10,8 +10,32 @@ Aplikasi 'myHotel' adalah aplikasi manajemen yang digunakan oleh hotel. Dengan f
 * Pemesanan Makanan
 
 ## Cara Menjalankan Aplikasi
-`
-Buat database dengan nama "myHotel" dan dump "database_myHotel.sql"
-Buka directory "..."
-Jalankan start.py untuk menjalankan aplikasi
-`
+```
+- Buat database dengan nama "myHotel" dan dump "database_myHotel.sql"
+- Buka directory "..."
+- Jalankan start.py untuk menjalankan aplikasi
+```
+## Daftar Modul yang Diimplementasi
+### Informasi Kamar
+Nama Penanggung Jawab :
+NIM :
+
+### Check-in
+Nama Penanggung Jawab :
+NIM :
+
+### Check-out
+Nama Penanggung Jawab :
+NIM :
+
+### Tagihan
+Nama Penanggung Jawab :
+NIM :
+
+### Riwayat Kamar
+Nama Penanggung Jawab :
+NIM :
+
+### Pemesanan Makanan
+Nama Penanggung Jawab :
+NIM :
