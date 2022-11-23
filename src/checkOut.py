@@ -4,7 +4,7 @@
 # Prerequisite: Library tkcalendar, tkinter, mariadb
 # Prerequisite: Database mariadb dengan nama myhotel
 # Notes: Replace ***** dengan password database mariadb
-# Notes: Warna yang dipakai #F7F0F5, #DECBB7, #8F857D
+# Notes: Warna yang dipakai #F7F0F5, #DECBB7, #8F857D https://coolors.co/f7f0f5-decbb7-8f857d-5c5552-433633
 
 import sys
 from tkinter import *
@@ -17,7 +17,7 @@ import os
 import mariadb
 
 # Layar utama menu check out
-def home(layar):
+def homeCheckOut(layar):
     global screen
     layar.destroy()
     screen = Tk()
@@ -360,6 +360,7 @@ def successCheckOut(screen3):
 
     Label(screen4, text = "Check out berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="n")
     
+    # INI NANTI MUNGKIN DIGANTI SAMA BUTTON LIHAT TAGIHAN
     # Button selesai untuk keluar (nanti kembali ke main menu)
     Button(screen4, text = "Selesai", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = backToHome).place(x = 785, y = 320,anchor="ne")
     
@@ -411,3 +412,6 @@ def showTitle(screen):
 # Menampilkan judul section check out
 def showSectionTitle(screen):
     Label(screen, text="Check-out",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
+
+def getNomorKamar():
+    print(noKamar.get())
