@@ -352,7 +352,7 @@ def successCheckOut(screen3):
     showSectionTitle(screen4)
 
     def checkOutAgain():
-        home(screen4)
+        homeCheckOut(screen4)
     
     def backToHome():
         from home import homescreen
@@ -383,7 +383,7 @@ def waktuInvalid2 (screen):
 
 # Menampilkan ulang halaman utama check out 
 def ulangi (screen):
-    home(screen)
+    homeCheckOut(screen)
 
 # Tampilan saat koneksi atau operasi ke database gagal
 def databaseFail(screen):
