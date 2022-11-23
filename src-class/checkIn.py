@@ -1,6 +1,7 @@
 # Check In
-# Nama PenangBel2022Fiy@gung Jawab : Alifiya Brizita Shary
+# Nama Penanggung Jawab : Alifiya Brizita Shary
 # Melakukan Check In pada Hotel, yaitu Booking Check In dan Check In Walk In
+# Menggunakan warna-warna yang sudah dilabeli hex color
 
 import sys
 import datetime
@@ -35,11 +36,11 @@ class CheckIn():
             self.checkInWalkIn(window)
 
         # Button bookingCheckIn menuju ke bookingCheckIn
-        Button(window, text = "Booking Check In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 20, height = 2, command = bukaBookingCheckIn).place(x = 350, y = 500)
+        Button(window, text = "Booking Check In", font = ("Helvetica", 15, "bold"), bg="#B0C4DE", width = 20, height = 2, command = bukaBookingCheckIn).place(x = 635, y = 230, anchor="center")
         # Button checkInWalkIn menuju ke checkInWalkIn
-        Button(window, text = "Check In Walk In", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 20, height = 2, command = bukaWalkIn).place(x = 730, y = 500)
+        Button(window, text = "Check In Walk In", font = ("Helvetica", 15, "bold"), bg="#B0C4DE", width = 20, height = 2, command = bukaWalkIn).place(x = 635, y = 300, anchor="center")
         # Button kembali ke menu utama
-        Button(window, text = "Kembali ke menu utama", font = ("Helvetica", 10, "bold"), bg="red", width = 10, height = 1, command = self.backToHomescreen).place(x = 99, y = 113, width=180, height=49)
+        Button(window, text = "Kembali ke menu utama", font = ("Helvetica", 10, "bold"), bg="#FFA07A", width = 10, height = 1, command = self.backToHomescreen).place(x = 99, y = 113, width=180, height=49)
     
         window.mainloop()
 
@@ -369,6 +370,8 @@ class CheckIn():
 
         def ulangiCheckIn():
             self.homeCheckIn(screenWalkInValid)
+        def bukakonfirmasiCheckIn2():
+            self.konfirmasiCheckIn2(screenWalkInValid)
         
         # Section Title
         Label(screenWalkInValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 635, y = 180,anchor="center")
@@ -377,10 +380,10 @@ class CheckIn():
         self.validateCheckInWalkIn()
 
         # Button next menuju konfirmasi check in
-        Button(screenWalkInValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.konfirmasiCheckIn1).place(x = 785, y = 400,anchor="ne")
+        Button(screenWalkInValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = bukakonfirmasiCheckIn2).place(x = 785, y = 600,anchor="ne")
         
         # Button back menuju halaman utama check in
-        Button(screenWalkInValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckIn).place(x = 485, y = 400)
+        Button(screenWalkInValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckIn).place(x = 485, y = 600,anchor="ne")
 
         screenWalkInValid.mainloop()
 
@@ -424,7 +427,7 @@ class CheckIn():
         Label(screenKonfirmasi2, text = "Lanjutkan Check In?", font = ("Helvetica", 12, "bold"), bg= "#FAF0E6").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenKonfirmasi2, text = "Ya", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=self.prosesCheckInBook).place(x = 785, y = 320, anchor="se")
+        Button(screenKonfirmasi2, text = "Ya", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=backToShowBook).place(x = 785, y = 320, anchor="se")
         Button(screenKonfirmasi2, text = "Tidak", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=backToShowBook).place(x = 785, y = 320, anchor="sw")
 
         screenKonfirmasi2.resizable(False,False)
@@ -522,8 +525,8 @@ class CheckIn():
         Label(screenBookBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#FAF0E6").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenBookBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=backToHomescreen).place(x = 785, y = 320, anchor="se")
-        Button(screenBookBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=ulangCheckInBook).place(x = 785, y = 320, anchor="sw")
+        Button(screenBookBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=backToHomescreen).place(x = 635, y = 320, anchor="center")
+        Button(screenBookBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=ulangCheckInBook).place(x = 635, y = 320, anchor="center")
 
         screenBookBerhasil.resizable(False,False)
         screenBookBerhasil.mainloop()
@@ -549,17 +552,16 @@ class CheckIn():
         Label(screenWalkInBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#FAF0E6").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenWalkInBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=backToHomescreen).place(x = 785, y = 320, anchor="se")
-        Button(screenWalkInBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=ulangCheckInWalk).place(x = 785, y = 320, anchor="sw")
+        Button(screenWalkInBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=backToHomescreen).place(x = 635, y = 320, anchor="center")
+        Button(screenWalkInBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=ulangCheckInWalk).place(x = 635, y = 320, anchor="center")
 
         screenBookBerhasil.resizable(False,False)
         screenBookBerhasil.mainloop()
 
+    # Back to home screen punya home screennya check in
     def backToHomescreen(self):
-        from home import homescreen
-        homescreen(window)
-
-    # Kembali ke halaman utama Check In
+        from home import Home
+        Home().homescreen(window)
 
     def showTitle(self, screen):
         Label(screen, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 635, y = 100, anchor="center")
