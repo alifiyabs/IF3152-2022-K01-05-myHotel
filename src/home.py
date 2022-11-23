@@ -18,6 +18,12 @@ def bukaCheckOut():
 def bukaCheckIn():
     homeCheckIn(screenhome)
 
+def bukaMenuMakanan():
+    MenuMakanan(screenhome)
+
+def bukaPemesananMakanan():
+    PemesananMakanan(screenhome) 
+
 def homescreen(screen):
     global screenhome
     screen.destroy()
@@ -40,6 +46,9 @@ def homescreen(screen):
 
     #button Riwayat Kamar
     RiwayatBut = tk.Button(screenhome,text="Riwayat Kamar",font=("helvetica",10,"bold"),bg="#DECBB7",command=bukaRiwayat).place(x=510,y=420,width=150,height=75,anchor="center")
+    
+    #button Menu Makanan
+    menuMakananBut = tk.Button(screenhome,text="menu makanan", command=bukaMenuMakanan).place(x=560,y=420,width=150,height=150)
     
     #button Pemesanan Makanan
     CheckOutBut = tk.Button(screenhome,text="Pemesanan Makanan",font=("helvetica",10,"bold"),bg="#DECBB7").place(x=760,y=420,width=150,height=75,anchor="center")
