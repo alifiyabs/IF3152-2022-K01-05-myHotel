@@ -28,23 +28,23 @@ class ClassPemesananMakanan():
         screenPemesananMakanan = tk.Tk()
         screenPemesananMakanan.title("Pesan Makanan")
         screenPemesananMakanan.geometry('1270x690')
-        screenPemesananMakanan.config(bg = "white")
+        screenPemesananMakanan.config(bg ="#F7F0F5")
 
         # Mencetak Title dan Sub-Title Halaman
-        tk.Label(screenPemesananMakanan, text ="myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x=575,y=40)
-        tk.Label(screenPemesananMakanan, text="Pesan Makanan", font=("Helvetica", 10, "bold"), bg="white", fg="black", width=100, anchor="w").place(x=580,y=80)
+        tk.Label(screenPemesananMakanan, text ="myHotel", font = ("Helvetica", 20, "bold"), bg="#F7F0F5", fg="black").place(x=575,y=40)
+        tk.Label(screenPemesananMakanan, text="Pesan Makanan", font=("Helvetica", 10, "bold"), bg="#F7F0F5", fg="black", width=100, anchor="w").place(x=580,y=80)
 
         # Entry box Nomor Kamar yang akan Dicatat Pesanan Makanannya
         global inputNoKamar
         global nomerKamar
         nomerKamar = StringVar()
-        tk.Label(screenPemesananMakanan, text="Masukkan Nomor Kamar", font=("Helvetica", 15), bg="white", fg="black", width=100, anchor="w").place(x=525,y=200)
+        tk.Label(screenPemesananMakanan, text="Masukkan Nomor Kamar", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x=525,y=200)
         inputNoKamar = tk.Entry(screenPemesananMakanan, textvariable = nomerKamar, font=("Helvetica", 12), bg="light grey", fg="black")
         inputNoKamar.place(x=545,y=240)
         tk.Label(screenPemesananMakanan, text=str(inputNoKamar.get()), font=("Helvetica", 10, "bold"), bg="white", fg="black", width=100, anchor="w").place(x=800,y=600)
 
         # Button untuk Melanjutkan ke Verifikasi Nomor Kamar
-        btn = tk.Button(screenPemesananMakanan, text = "Pesan Makanan", bd='2', command=self.isKamarTerisi)
+        btn = tk.Button(screenPemesananMakanan, text = "Pesan Makanan", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 20, height = 1, command=self.isKamarTerisi)
         btn.place(x=588,y=280)
 
         screenPemesananMakanan.mainloop()
@@ -202,8 +202,8 @@ class ClassPemesananMakanan():
         btn_total.grid(row=8, column=1)
 
         # BILL
-        f2 = Frame(screenPesan, bg="lightyellow", width=300, height=370)
-        f2.place(x=690, y=118)
+        frameTotal = Frame(screenPesan, bg="lightyellow", width=300, height=370)
+        frameTotal.place(x=690, y=118)
 
         # Button Pesan untuk Mengonfirmasi Pesanan
         btn = tk.Button(screenPesan, text = "Pesan", bd='2', command=self.callKonfirmasiPesanan)
