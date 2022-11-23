@@ -1,9 +1,14 @@
+# Informasi Kamar
+# Penanggung jawab: Joe Putera 18217035
+
+# Prerequisite: Library tkinter, mariadb
+# Prerequisite: Database mariadb dengan nama myhotel
+# Notes: Replace ***** dengan password database mariadb (ada 4 field password)
+
 import sys
 import tkinter as tk
-# from PIL import Image, ImageTk
 import os
 from tkinter import ttk
-# import mysql.connector as mysql
 import mariadb
 from riwayat import Riwayat
 from checkOut import homeCheckOut
@@ -133,7 +138,7 @@ def pageDouble(screen):
     try:
         conn = mariadb.connect(
             user='root',
-            password='admin',
+            password='*****',
             host='localhost',
             database='myhotel'
         )
