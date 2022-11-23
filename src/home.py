@@ -8,7 +8,11 @@ from checkOut import homeCheckOut
 from checkIn import homeCheckIn
 from menuMakanan import MenuMakanan
 from pemesananMakanan1 import PemesananMakanan
+from infoKamar import Infokamar
 
+def bukaInfo():
+    Infokamar(screenhome)
+    
 def bukaRiwayat():
     Riwayat.lihatRiwayat(screenhome)
 
@@ -36,7 +40,7 @@ def homescreen(screen):
     MenuUtamalabelTitle = tk.Label(screenhome,text="Menu Utama",font=("helvetica",12,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
     
     #button Informasi Kamar
-    InfoKamarBut = tk.Button(screenhome,text="Informasi Kamar",font=("helvetica",10,"bold"),bg="#DECBB7").place(x=310,y=270,width=150,height=75)
+    InfoKamarBut = tk.Button(screenhome,text="Informasi Kamar",font=("helvetica",10,"bold"),bg="#DECBB7",command=bukaInfo).place(x=310,y=270,width=150,height=75)
 
     #button Check-In
     CheckInBut = tk.Button(screenhome,text="Check-in",font=("helvetica",10,"bold"),bg="#DECBB7",command=bukaCheckIn).place(x=560,y=270,width=150,height=75)
