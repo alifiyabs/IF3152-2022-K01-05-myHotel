@@ -1,10 +1,10 @@
 # Check Out
 # Penanggung jawab: Theodore Justin Lionar 18220011
 
-# Progress: Sudah berfungsi
-# Prerequisite: install tkcalendar, tkinter, mariadb, pastikan semua library ada
-# Prerequisite: database mariadb dengan nama myhotel sudah ada
-# Notes: Replace ***** dengan password database
+# Prerequisite: Library tkcalendar, tkinter, mariadb
+# Prerequisite: Database mariadb dengan nama myhotel
+# Notes: Replace ***** dengan password database mariadb (ada 4 field password)
+# Notes: Warna yang dipakai #F7F0F5, #DECBB7, #8F857D https://coolors.co/f7f0f5-decbb7-8f857d-5c5552-433633
 
 import sys
 from tkinter import *
@@ -15,15 +15,16 @@ import tkinter as tk
 import datetime
 import os
 import mariadb
+from tagihan import Tagihan
 
 # Layar utama menu check out
-def home(layar):
+def homeCheckOut(layar):
     global screen
     layar.destroy()
     screen = Tk()
     screen.title("myHotel")
     screen.geometry("1270x690")
-    screen.config(bg = "white")
+    screen.config(bg = "#F7F0F5")
     
     global noKamar
     global nomorKamar_var
@@ -33,14 +34,20 @@ def home(layar):
     showTitle(screen)
     showSectionTitle(screen)
 
+    def backToHome():
+        from home import homescreen
+        homescreen(screen)
+
     # Entry box nomor kamar
-    Label(screen, text = "Nomor Kamar", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
-    nomorKamar_var = Entry(screen, textvariable = noKamar, font=("Helvetica", 15), bg = "light grey", fg = "black")
-    nomorKamar_var.place(x = 500, y = 250, width = 300, height = 30)
+    Label(screen, text = "Nomor Kamar", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 220)
+    nomorKamar_var = Entry(screen, textvariable = noKamar, font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
+    nomorKamar_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
 
     # Button next menuju verifikasi kamar
-    Button(screen, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = verifyKamar).place(x = 670, y = 320)
+    Button(screen, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = verifyKamar).place(x = 785, y = 320,anchor="ne")
+    Button(screen, text = "Kembali ke Menu Utama", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHome).place(x = 75, y = 75, width=180, height=50)
 
+    screen.resizable(False,False)
     screen.mainloop()
 
 def verifyKamar():
@@ -48,7 +55,7 @@ def verifyKamar():
     try:
         conn = mariadb.connect (
             user = 'root',
-            password = '*****',
+            password = '',
             host = 'localhost',
             port = 3306,
             database = 'myhotel'
@@ -80,7 +87,7 @@ def kamarValid(screen):
     screen1 = Tk()
     screen1.title("myHotel")
     screen1.geometry("1270x690")
-    screen1.config(bg = "white")
+    screen1.config(bg = "#F7F0F5")
 
     showTitle(screen1)
     showSectionTitle(screen1)
@@ -94,21 +101,22 @@ def kamarValid(screen):
     NIKPelanggan = StringVar()
 
     # Entry box NIK
-    Label(screen1, text = "NIK Pelanggan", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
-    NIKPelanggan_var = Entry(screen1, textvariable = NIKPelanggan, font=("Helvetica", 15), bg = "light grey", fg = "black")
-    NIKPelanggan_var.place(x = 500, y = 250, width = 300, height = 30)
+    Label(screen1, text = "NIK Pelanggan", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 220)
+    NIKPelanggan_var = Entry(screen1, textvariable = NIKPelanggan, font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
+    NIKPelanggan_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
 
     # Entry box tanggal check out
-    Label(screen1, text = "Tanggal Check Out", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 320)
+    Label(screen1, text = "Tanggal Check Out", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 320)
     cal = Calendar(screen1, selectmode = 'day', date_pattern = 'yyyy-mm-dd')
-    cal.place(x = 500, y = 350, width = 300, height = 200)
+    cal.place(x = 485, y = 320, width = 300, height = 200)
 
     # Button next menuju ambil tanggal dan verifikasi data
-    Button(screen1, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = getDate).place(x = 670, y = 580)
+    Button(screen1, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = getDate).place(x = 785, y = 550,anchor="ne")
     
     # Button back menuju halaman utama check out
-    Button(screen1, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = ulangiCheckOut).place(x = 500, y = 580)
+    Button(screen1, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 550)
 
+    screen1.resizable(False,False)
     screen1.mainloop()
 
 # Fungsi untuk mengambil tanggal dari date picker calendar dan lanjut ke verifikasi data
@@ -130,7 +138,7 @@ def verifyData():
     try:
         conn = mariadb.connect (
             user = 'root',
-            password = '*****',
+            password = '',
             host = 'localhost',
             port = 3306,
             database = 'myhotel'
@@ -150,16 +158,16 @@ def verifyData():
             tamuInvalid(screen1)
         else: 
             # Ambil tanggal check out database
-            statement = "SELECT tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s"
-            data = (int(NIKPelanggan.get()), int(noKamar.get()),)
+            statement = "SELECT tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
+            data = (int(NIKPelanggan.get()), int(noKamar.get()),"Check-in",)
             cur.execute(statement, data)
             row = cur.fetchone()
             for x in row:
                 tanggalCheckOutVerify = x
 
             # Ambil tanggal check in database
-            statement = "SELECT tanggalCheckIn FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s"
-            data = (int(NIKPelanggan.get()), int(noKamar.get()),)
+            statement = "SELECT tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
+            data = (int(NIKPelanggan.get()), int(noKamar.get()),"Check-in",)
             cur.execute(statement, data)
             row = cur.fetchone()
             for x in row:
@@ -189,7 +197,7 @@ def validateCheckOut(screen1):
     screen2 = Tk()
     screen2.title("myHotel")
     screen2.geometry("1270x690")
-    screen2.config(bg = "white")
+    screen2.config(bg = "#F7F0F5")
 
     showTitle(screen2)
     showSectionTitle(screen2)
@@ -202,58 +210,21 @@ def validateCheckOut(screen1):
 
     # Cetak informasi kamar yang akan di-check out
     cetakValidateCheckOut()
+    
 
     # Button next menuju konfirmasi check out
-    Button(screen2, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = confirmationCheckOut).place(x = 670, y = 580)
+    Button(screen2, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = confirmationCheckOut).place(x = 785, y = 550,anchor="ne")
     
     # Button back menuju halaman utama check out
-    Button(screen2, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = ulangiCheckOut).place(x = 500, y = 580)
+    Button(screen2, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 550)
 
+    screen2.resizable(False,False)
     screen2.mainloop()
 
 # Cetak informasi kamar yang akan di-check out
 def cetakValidateCheckOut():
-    # Koneksi ke database
-    try:
-        conn = mariadb.connect (
-            user = 'root',
-            password = '*****',
-            host = 'localhost',
-            port = 3306,
-            database = 'myhotel'
-        )
-    except mariadb.Error as e:
-        print(f"Error connecting to MariaDB Platform: {e}")
-        databaseFail(screen2)
-
-    # Execute query
-    cur = conn.cursor()
-    try:
-        # Mengambil informasi kamar tamu yang diperlukan
-        statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut, totalTagihan FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s"
-        data = (int(NIKPelanggan.get()), int(noKamar.get()),)
-        cur.execute(statement, data)
-    except mariadb.Error as e:
-        print(f"Error retrieving entry form database: {e}")
-        databaseFail(screen2)
-        
-    # Tampilkan informasi dalam bentuk tabel
-    columns = (1,2,3,4,5,6)
-    tree = ttk.Treeview(screen2, height = 1, columns = columns, show = 'headings')
-    tree.place(x = 40, y = 220)
-    tree.heading(1, text= "Nomor Kamar")
-    tree.heading(2, text= "Nama Tamu")
-    tree.heading(3, text= "NIK Tamu")
-    tree.heading(4, text= "Tanggal Check In")
-    tree.heading(5, text= "Tanggal Check Out")
-    tree.heading(6, text= "Total Tagihan")
-
-    i = 1
-    for (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut, totalTagihan) in cur:
-        tree.insert(parent='', index=i, text='', values = (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut, totalTagihan))
-        i += 1
-    
-    conn.commit()
+    tagihan = Tagihan(noKamar, NIKPelanggan)
+    tagihan.infotagihan(screen2)
 
 # Mengonfirmasi perlakuan check out
 def confirmCheckOut(screen2):
@@ -262,7 +233,7 @@ def confirmCheckOut(screen2):
     screen3 = Tk()
     screen3.title("myHotel")
     screen3.geometry("1270x690")
-    screen3.config(bg = "white")
+    screen3.config(bg = "#F7F0F5")
 
     showTitle(screen3)
     showSectionTitle(screen3)
@@ -270,14 +241,15 @@ def confirmCheckOut(screen2):
     def returntoValidateCheckOut():
         validateCheckOut(screen3)
     
-    Label(screen3, text = "Lakukan check out?", font = ("Helvetica", 15, "bold"), bg="white").place(x = 550, y = 220)
+    Label(screen3, text = "Lakukan check out?", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="n")
     
     # Button ya untuk melakukan proses check out
-    Button(screen3, text = "Ya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = processCheckOut).place(x = 670, y = 580)
+    Button(screen3, text = "Ya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = processCheckOut).place(x = 785, y = 320,anchor="ne")
     
     # Button tidak untuk kembali ke halaman validasi check out
-    Button(screen3, text = "Tidak", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = returntoValidateCheckOut).place(x = 500, y = 580)
+    Button(screen3, text = "Tidak", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = returntoValidateCheckOut).place(x = 485, y = 320)
 
+    screen3.resizable(False,False)
     screen3.mainloop()
 
 # Proses update database untuk melakukan check out
@@ -286,7 +258,7 @@ def processCheckOut():
     try:
         conn = mariadb.connect (
             user = 'root',
-            password = '*****',
+            password = '',
             host = 'localhost',
             port = 3306,
             database = 'myhotel'
@@ -337,25 +309,28 @@ def successCheckOut(screen3):
     screen4 = Tk()
     screen4.title("myHotel")
     screen4.geometry("1270x690")
-    screen4.config(bg = "white")
+    screen4.config(bg = "#F7F0F5")
 
     showTitle(screen4)
     showSectionTitle(screen4)
 
     def checkOutAgain():
-        home(screen4)
+        homeCheckOut(screen4)
     
-    def finishCheckOut():
-        screen4.destroy()
+    def backToHome():
+        from home import homescreen
+        homescreen(screen4)
 
-    Label(screen4, text = "Check out berhasil dilakukan!", font = ("Helvetica", 15, "bold"), bg="white").place(x = 510, y = 220)
+    Label(screen4, text = "Check out berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="n")
     
+    # INI NANTI MUNGKIN DIGANTI SAMA BUTTON LIHAT TAGIHAN
     # Button selesai untuk keluar (nanti kembali ke main menu)
-    Button(screen4, text = "Selesai", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = finishCheckOut).place(x = 670, y = 580)
+    Button(screen4, text = "Selesai", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = backToHome).place(x = 785, y = 320,anchor="ne")
     
     # Button kembali untuk menuju ke halaman utama check out
-    Button(screen4, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = checkOutAgain).place(x = 500, y = 580)
+    Button(screen4, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = checkOutAgain).place(x = 485, y = 320)
 
+    screen4.resizable(False,False)
     screen4.mainloop()
 
 # Text tamu invalid karena identitas yang salah
@@ -372,7 +347,7 @@ def waktuInvalid2 (screen):
 
 # Menampilkan ulang halaman utama check out 
 def ulangi (screen):
-    home(screen)
+    homeCheckOut(screen)
 
 # Tampilan saat koneksi atau operasi ke database gagal
 def databaseFail(screen):
@@ -381,7 +356,7 @@ def databaseFail(screen):
     screen5 = Tk()
     screen5.title("myHotel")
     screen5.geometry("1270x690")
-    screen5.config(bg = "white")   
+    screen5.config(bg = "#F7F0F5")   
 
     showTitle(screen5)
     showSectionTitle(screen5)
@@ -389,15 +364,19 @@ def databaseFail(screen):
     def ulangiCheckOut():
         ulangi(screen5)
 
-    Label(screen5, text = "Kegagalan Sistem!", font = ("Helvetica", 15, "bold"), bg="white").place(x = 555, y = 220)
-    Button(screen5, text = "Kembali", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = ulangiCheckOut).place(x = 500, y = 580)
+    Label(screen5, text = "Kegagalan Sistem!", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="center")
+    Button(screen5, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 580)
 
+    screen5.resizable(False,False)
     screen5.mainloop()
 
 # Menampilkan judul aplikasi
 def showTitle(screen):
-    Label(screen, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 590, y = 100)
+    Label(screen, text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=100,anchor="center")
 
 # Menampilkan judul section check out
 def showSectionTitle(screen):
-    Label(screen, text = "Check-Out", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 140)
+    Label(screen, text="Check-out",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
+
+def getNomorKamar():
+    print(noKamar.get())
