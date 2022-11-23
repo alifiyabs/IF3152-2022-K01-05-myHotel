@@ -31,7 +31,7 @@ def homeLogin(layar):
     username_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
 
     Label(screen, text = "Password", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 300)
-    password_var = Entry(screen, textvariable = password, font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
+    password_var = Entry(screen, textvariable = password, show ="*", font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
     password_var.place(x = 635, y = 330, width = 300, height = 30,anchor="n")
 
     Button(screen, text = "Login", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = verifyLogin).place(x = 635, y = 390,anchor="n")
