@@ -48,9 +48,13 @@ class ClassMenuMakanan():
         #style.map("Treeview",background=[('selected','azure4')])
 
         # Men-generate Daftar Menu
-        menus = [('1.', '001', 'Ayam Geprek', 'Rp20.000'),
-                ('2.', '002', 'Ayam Penyet', 'Rp20.000'),
-                ('3.', '003', 'Tempe', 'Rp2.000')]
+        menus = [('1.', '001', 'Ayam Geprek', 20000),
+                ('2.', '002', 'Ayam Penyet', 20000),
+                ('3.', '003', 'Tempe', 2000),
+                ('4.', '004', 'Nasi', 5000),
+                ('5.', '005', 'Sayur', 10000),
+                ('6.', '006', 'Teh', 3000),
+                ('7.', '007', 'Kopi', 3000)]
 
         # Menambahkan Daftar Menu ke Treeview
         for menu in menus:
