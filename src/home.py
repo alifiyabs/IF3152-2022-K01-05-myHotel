@@ -8,6 +8,8 @@ import mariadb
 from riwayat import Riwayat
 from checkOut import homeCheckOut
 from checkIn import homeCheckIn
+from menuMakanan import MenuMakanan
+from pemesananMakanan1 import PemesananMakanan
 
 def bukaRiwayat():
     Riwayat(screenhome)
