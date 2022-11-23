@@ -53,22 +53,5 @@ btn.place(x=820,y=355)
 
 btn = tk.Button(root, text = "Selesai Pesan", bd='2', command=root.destroy)
 btn.place(x=800,y=385)
-#def item_selected(event):
-    #for selected_item in tree.selection():
-        #item = tree.item(selected_item)
-        #record = item['values']
-        # show a message
-        #showinfo(title='Information', message=','.join(record))
 
-
-#tree.bind('<<TreeviewSelect>>', item_selected)
-
-#tree.grid(row=0, column=0, sticky='nsew')
-
-# add a scrollbar
-#scrollbar = ttk.Scrollbar(root, orient=tk.VERTICAL, command=tree.yview)
-#tree.configure(yscroll=scrollbar.set)
-#scrollbar.grid(row=0, column=1, sticky='ns')
-
-# run the app
 root.mainloop()
