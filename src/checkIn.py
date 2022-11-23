@@ -4,7 +4,7 @@
 
 import sys
 import datetime
-import mariadb
+#import mariadb
 import tkinter as tk
 from datetime import datetime
 import os
@@ -12,6 +12,7 @@ from tkcalendar import Calendar
 from tkinter import *
 from tkinter import ttk, messagebox
 from datetime import date
+import mysql.connector
 
 class CheckIn():
     def homeCheckIn(self, halaman):
@@ -122,13 +123,13 @@ class CheckIn():
         # Buka koneksi dengan database mysql
 
         try:
-            conn = mariadb.connect (
+            conn = mysql.connector.connect (
                 user = 'root',
-                password = '*****',
+                password = 'Bel2022Fiy@',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
         
@@ -143,19 +144,19 @@ class CheckIn():
                 Label(screenBooking, text = "Tidak dapat melakukan check in karena kamar tidak valid!", fg = "red", font = ("Helvetica, 13")).pack()
             else:
                 self.showCheckInBookingValid(screenBooking)
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error retrieving entry form database: {e}")
 
     def verifikasiCheckInWalkIn(self):
         # Buka koneksi dengan database mysql
         try:
-            conn = mariadb.connect (
+            conn = mysql.connector.connect (
                 user = 'root',
-                password = '*****',
+                password = 'Bel2022Fiy@',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
         
@@ -170,7 +171,7 @@ class CheckIn():
                 Label(screenWalkIn, text = "Tidak dapat melakukan check in karena kamar tidak valid!", fg = "red", font = ("Helvetica, 13")).pack()
             else:
                 self.isiDataPengunjung(screenWalkIn)
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error retrieving entry form database: {e}")
 
     def isiDataPengunjung(self, screenWalkIn):
@@ -241,13 +242,13 @@ class CheckIn():
 
         # Connect to database
         try:
-            conn = mariadb.connect (
+            conn = mysql.connector.connect (
                 user = 'root',
-                password = '*****',
+                password = 'Bel2022Fiy@',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
 
@@ -256,13 +257,13 @@ class CheckIn():
             statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
             data = (int(nikPelangganBook.get()), int(noKamarBook.get()), "Book")
             cur.execute(statement, data)
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error retrieving entry from Database: {e}")
         
         # Tampilkan informasi dalam bentuk Tabel
         columns = (1,2,3,4,5)
         tree = ttk.Treeview(screenBookValid, height = 1, columns = columns, show = 'headings')
-        tree.place(x = 60, y = 220)
+        tree.place(x = 100, y = 220)
         tree.heading(1, text = "Nomor Kamar")
         tree.heading(2, text = "Nama Tamu")
         tree.heading(3, text = "NIK Tamu")
@@ -278,44 +279,22 @@ class CheckIn():
         conn.commit()
 
     def validateCheckInWalkIn(self):
-
-        # Connect to database
-        try:
-            conn = mariadb.connect (
-                user = 'root',
-                password = '*****',
-                host = 'localhost',
-                database = 'myHotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to Mysql Platform: {e}")
-            sys.exit(1)
-
-        cur = conn.cursor()
-        try:
-            statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut FROM informasiTamuHotel WHERE noKamar = %s AND statusKamar = %s"
-            data = (int(noKamarWalkIn.get()), "Check-in")
-            cur.execute(statement, data)
-        except mariadb.Error as e:
-            print(f"Error retrieving entry from Database: {e}")
         
-        # Tampilkan informasi dalam bentuk Tabel
-        columns = (1,2,3,4,5)
-        tree = ttk.Treeview(screenWalkInValid, height = 1, columns = columns, show = 'headings')
-        tree.place(x = 40, y = 220)
-        tree.heading(1, text = "Nomor Kamar")
-        tree.heading(2, text = "Nama Tamu")
-        tree.heading(3, text = "NIK Tamu")
-        tree.heading(4, text = "Tanggal Check In")
-        tree.heading(5, text = "Tanggal Check Out")
+        frame = tk.LabelFrame(screenWalkInValid, bg='white', padx=5, pady=10)
+        # lf.grid(row=0, column=0, padx=0, pady=35, sticky=CENTER)
+        frame.place(anchor="c", relx=.5, rely=.5)
+            
+        Label(frame, text= "Nomor Kamar", font = ("Helvetica", 13), bg= 'white').grid(row=0, column=0, padx=20, pady=5, sticky='W')
+        Label(frame, text= "Nama Tamu", font = ("Helvetica", 13), bg= 'white').grid(row=1, column=0, padx=20, pady=5, sticky='W')
+        Label(frame, text= "NIK Tamu", font = ("Helvetica", 13), bg= 'white').grid(row=2, column=0, padx=20, pady=5, sticky='W')
+        Label(frame, text= "Tanggal Check In", font = ("Helvetica", 13), bg= 'white').grid(row=3, column=0, padx=20, pady=5, sticky='W')
+        Label(frame, text= "Tanggal Check Out", font = ("Helvetica", 13), bg= 'white').grid(row=4, column=0, padx=20, pady=5, sticky='W')
 
-
-        i = 1
-        for (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut) in cur:
-            tree.insert(parent='', index=i, text='', values = (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut))
-            i += 1
-        
-        conn.commit()
+        Label(frame, text=noKamarWalkIn.get(), font = ("Helvetica", 13), bg= 'white').grid(row=0, column=1, padx=20, pady=5, sticky='E')
+        Label(frame, text=namaPengunjungFill.get(), font = ("Helvetica", 13), bg= 'white').grid(row=1, column=1, padx=20, pady=5, sticky='E')
+        Label(frame, text=nikPengunjungFill.get(), font = ("Helvetica", 13), bg= 'white').grid(row=2, column=1, padx=20, pady=5, sticky='E')
+        Label(frame, text=calendarIn.get_date(), font = ("Helvetica", 13), bg= 'white').grid(row=3, column=1, padx=20, pady=5, sticky='E')
+        Label(frame, text=calendarOut.get_date(), font = ("Helvetica", 13), bg= 'white').grid(row=4, column=1, padx=20, pady=5, sticky='E')
 
     def showCheckInBookingValid(self, screenBooking):
         global screenBookValid
@@ -342,15 +321,16 @@ class CheckIn():
         self.validateCheckInBooking()
 
         # Button next menuju konfirmasi check in
-        Button(screenBookValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = bukakonfirmasiCheckIn1).place(x = 785, y = 400,anchor="ne")
+        Button(screenBookValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = bukakonfirmasiCheckIn1).place(x = 785, y = 600,anchor="ne")
         
         # Button back menuju halaman utama check in
-        Button(screenBookValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckIn).place(x = 485, y = 400)
+        Button(screenBookValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckIn).place(x = 485, y = 600)
 
         screenBookValid.mainloop()
 
     def showCheckInWalkInValid(self, screenFillData):
         global screenWalkInValid
+        global frame
         screenFillData.destroy()
         screenWalkInValid = Tk()
         screenWalkInValid.title("myHotel")
@@ -364,6 +344,7 @@ class CheckIn():
 
         def ulangiCheckIn():
             self.homeCheckIn(screenWalkInValid)
+        
         # Section Title
         Label(screenWalkInValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 635, y = 180,anchor="center")
 
@@ -427,13 +408,13 @@ class CheckIn():
     def prosesCheckInBook(self):
         # Koneksi ke database
         try:
-            conn = mariadb.connect (
+            conn = mysql.connector.connect (
                 user = 'root',
-                password = '*****',
+                password = 'Bel2022Fiy@',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
         
@@ -450,7 +431,7 @@ class CheckIn():
             data = ("Unavailable", int(noKamarBook.get()),)
             cur.execute(statement, data)
 
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error updating or retrieving entry form database: {e}")
 
         conn.commit()
@@ -459,13 +440,13 @@ class CheckIn():
     def prosesCheckInWalk(self):
         # Koneksi ke database
         try:
-            conn = mariadb.connect (
+            conn = mysql.connector.connect (
                 user = 'root',
-                password = '*****',
+                password = 'Bel2022Fiy@',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
         
@@ -481,17 +462,15 @@ class CheckIn():
             # Insert data pengunjung baru pada tabel informasi tamu hotel
             cur = conn.cursor()
             statement = "INSERT INTO informasiTamuHotel (NIK, nomorKamar, tanggalCheckIn, tanggalCheckOut, tipeKamar, namaPengguna, durasiMenginap, statusPengunjung, totalTagihan) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            # durasi = datetime.strptime(datetime.strftime(calendarOut),"%Y/%m/%d") - datetime.strptime(datetime.strftime(calendarIn),"%Y/%m/%d")
-            # durasi = calendarOut - calendarIn
-            # durasi = (datetime.strptime(calendarOut.get_date(), '%Y-%m-%d')).date() - (datetime.strptime(calendarIn.get_date(), '%Y-%m-%d')).date()
+            # Kondisi jika 
             if (int(noKamarWalkIn.get()) < 200):
-                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), 1, "Single" ,namaPengunjungFill.get(), "Check-In",300000)
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), "Single", calendarOut.get_date(), namaPengunjungFill.get(), 1, "Check-In", 300000)
             elif (int(noKamarWalkIn.get()) < 300 and int(noKamarWalkIn.get()) >= 200):
-                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), 1, "Double" ,namaPengunjungFill.get(), "Check-In",600000)
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Double", namaPengunjungFill.get(), 2, "Check-In", 600000)
             else:
-                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), "2022-12-12", "2022-12-13", 1, "Deluxe" ,namaPengunjungFill.get(), "Check-In",1000000)
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Deluxe", namaPengunjungFill.get(), 3 , "Check-In", 1000000)
             cur.execute(statement,value)
-        except mariadb.Error as e:
+        except mysql.connector.Error as e:
             print(f"Error updating or retrieving entry form database: {e}")
 
         conn.commit()
