@@ -1,9 +1,7 @@
 import sys
 import tkinter as tk
-# from PIL import Image, ImageTk
 import os
 from tkinter import ttk
-# import mysql.connector as mysql
 import mariadb
 from riwayat import Riwayat
 from checkOut import homeCheckOut
@@ -12,7 +10,7 @@ from menuMakanan import MenuMakanan
 from pemesananMakanan1 import PemesananMakanan
 
 def bukaRiwayat():
-    Riwayat(screenhome)
+    Riwayat.lihatRiwayat(screenhome)
 
 def bukaCheckOut():
     homeCheckOut(screenhome)
