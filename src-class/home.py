@@ -9,6 +9,7 @@ from riwayat import ClassRiwayat
 from checkOut import ClassCheckOut
 # from checkIn import homeCheckIn
 from infoKamar import ClassInfoKamar
+from menuMakanan import ClassMenuMakanan
 from pemesananMakanan import ClassPemesananMakanan
 
 class ClassHome():
@@ -26,6 +27,10 @@ class ClassHome():
     def bukaInfoKamar(self):
         infokamar_var = ClassInfoKamar()
         infokamar_var.Infokamar(screenhome)
+
+    def bukaMenuMakanan(self):
+        menuMakanan_var = ClassMenuMakanan()
+        menuMakanan_var.homeMenuMakanan(screenhome)
 
     def bukaPemesananMakanan(self):
         pemesanan_var = ClassPemesananMakanan()
@@ -54,6 +59,9 @@ class ClassHome():
         #button Riwayat Kamar
         RiwayatBut = tk.Button(screenhome,text="Riwayat Kamar",font=("helvetica",10,"bold"),bg="#DECBB7",command=self.bukaRiwayat).place(x=510,y=420,width=150,height=75,anchor="center")
         
+        #button Menu Makanan
+        menuMakananBut = tk.Button(screenhome, text="Menu Makanan", font=("helvetica",10,"bold"), bg="#DECBB7", command=self.bukaMenuMakanan).place(x=510,y=400,width=150,height=75)
+
         #button Pemesanan Makanan
         pemesananMakananBut = tk.Button(screenhome, text="Pemesanan Makanan", font=("helvetica",10,"bold"), bg="#DECBB7", command=self.bukaPemesananMakanan).place(x=810,y=400,width=150,height=75)
 
