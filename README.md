@@ -17,25 +17,31 @@ Aplikasi 'myHotel' adalah aplikasi manajemen yang digunakan oleh hotel. Dengan f
 ```
 ## Daftar Modul yang Diimplementasi
 ### Informasi Kamar
-Nama Penanggung Jawab :
-NIM :
+Nama Penanggung Jawab : Joe Putera
+
+NIM : 18217035
 
 ### Check-in
-Nama Penanggung Jawab :
-NIM :
+Nama Penanggung Jawab : Alifiya Brizita Shari
+
+NIM : 18220069
 
 ### Check-out
-Nama Penanggung Jawab :
-NIM :
+Nama Penanggung Jawab : Theodore Justin Lionar
+
+NIM : 18220011
 
 ### Tagihan
-Nama Penanggung Jawab :
-NIM :
+Nama Penanggung Jawab : Rachita Caronica Jonur
+
+NIM : 18220091
 
 ### Riwayat Kamar
-Nama Penanggung Jawab :
-NIM :
+Nama Penanggung Jawab : Kyla Aisha
+
+NIM : 18220093
 
 ### Pemesanan Makanan
-Nama Penanggung Jawab :
-NIM :
+Nama Penanggung Jawab : Adwa Sofia
+
+NIM : 18220109
