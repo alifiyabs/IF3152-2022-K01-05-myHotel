@@ -47,13 +47,13 @@ def homescreen(screen):
     CheckOutBut = tk.Button(screenhome,text="Check-out",font=("helvetica",10,"bold"),bg="#DECBB7",command=bukaCheckOut).place(x=810,y=270,width=150,height=75)
 
     #button Riwayat Kamar
-    RiwayatBut = tk.Button(screenhome,text="Riwayat Kamar",font=("helvetica",10,"bold"),bg="#DECBB7",command=bukaRiwayat).place(x=510,y=420,width=150,height=75,anchor="center")
+    RiwayatBut = tk.Button(screenhome,text="Riwayat Kamar",font=("helvetica",10,"bold"),bg="#DECBB7",command=bukaRiwayat).place(x=310,y=400,width=150,height=75)
     
     #button Menu Makanan
-    menuMakananBut = tk.Button(screenhome,text="menu makanan", command=bukaMenuMakanan).place(x=560,y=420,width=150,height=150)
+    menuMakananBut = tk.Button(screenhome, text="Menu Makanan", font=("helvetica",10,"bold"), bg="#DECBB7", command=bukaMenuMakanan).place(x=560,y=400,width=150,height=75)
     
     #button Pemesanan Makanan
-    CheckOutBut = tk.Button(screenhome,text="Pemesanan Makanan",font=("helvetica",10,"bold"),bg="#DECBB7").place(x=760,y=420,width=150,height=75,anchor="center")
+    pemesananMakananBut = tk.Button(screenhome, text="Pemesanan Makanan", font=("helvetica",10,"bold"), bg="#DECBB7", command=bukaPemesananMakanan).place(x=810,y=400,width=150,height=75)
     
     screenhome.resizable(False,False)
     screenhome.mainloop()
