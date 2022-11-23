@@ -44,7 +44,7 @@ def MenuMakanan(screen):
     # Mengatur Style Treeview
     style = ttk.Style()
     style.configure("Treeview", font=('helvetica', 12), background="white",foreground="black",fieldbackground='dodgerblue3',rowheight=40)
-    style.map("Treeview",background=[('selected','azure4')])
+    #style.map("Treeview",background=[('selected','azure4')])
 
     # Men-generate Daftar Menu
     menus = [('1.', '001', 'Ayam Geprek', 'Rp20.000'),
