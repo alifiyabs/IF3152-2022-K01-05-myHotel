@@ -1,9 +1,14 @@
+# Riwayat Kamar
+# Penanggung jawab: Kyla Aisha 18220093
+
+# Prerequisite: Library tkinter, mariadb
+# Prerequisite: Database mariadb dengan nama myhotel
+# Notes: Replace ***** dengan password database mariadb (hanya 1 field password)
+
 import sys
 import tkinter as tk
-# from PIL import Image, ImageTk
 import os
 from tkinter import ttk
-# import mysql.connector as mysql
 import mariadb
 
 class ClassRiwayat():
