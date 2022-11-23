@@ -1,3 +1,7 @@
+# Check In
+# Nama Penanggung Jawab : Alifiya Brizita Shary
+# Melakukan Check In pada Hotel, yaitu Booking Check In dan Check In Walk In
+
 import sys
 import datetime
 import mysql.connector
@@ -53,6 +57,10 @@ def BookingCheckIn(window):
     nikPelangganBook = StringVar()
     noKamarBook = StringVar()
 
+    # Kembali ke halaman utama Check In
+    def backToHomeCheckIn():
+        homeCheckIn(screenBooking)
+
     # Title
     (screenBooking)
     # Sectione Title
@@ -70,7 +78,9 @@ def BookingCheckIn(window):
 
     # Button next menuju cek ketersediaan kamar 
     Button(screenBooking, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = " ").place(x = 670, y = 580)
-
+    # Button kembali ke menu utama Check In
+    Button(screenBooking, text = "Kembali ke menu Check In", font = ("Helvetica", 10, "bold"), bg="red", width = 10, height = 1, command = backToHomeCheckIn).place(x = 99, y = 113, width=180, height=49)
+   
     verifikasiBookingCheckIn()
     
     screenBooking.mainloop()
@@ -87,17 +97,27 @@ def checkInWalkIn(window):
     global noKamarWalkIn_var
     noKamarWalkIn = StringVar()
 
+    # Buka halaman isi data pengunjung
+    def bukaIsiDataPengunjung():
+        isiDataPengunjung(screenWalkIn)
+    
+    # Kembali ke halaman utama Check In
+    def backToHomeCheckIn():
+        homeCheckIn(screenWalkIn)
+
     # Entry nomor kamar
     showTitle(screenWalkIn)
+    Label(screenWalkIn, text = "Check-In Walk In", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 140)
 
     Label(screenWalkIn, text = "Nomor Kamar", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
     noKamarWalkIn_var = Entry(screenWalkIn, textvariable = noKamarWalkIn, font=("Helvetica", 15), bg = "light grey", fg = "black")
     noKamarWalkIn_var.place(x = 500, y = 250, width = 300, height = 30)
 
     # Button Cek ketersediaan kamar
-  
-    Button(screenWalkIn, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = " ").place(x = 670, y = 580)
-    
+    Button(screenWalkIn, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command =  bukaIsiDataPengunjung).place(x = 670, y = 580)
+    # Button kembali ke menu utama Check In
+    Button(screenWalkIn, text = "Kembali ke menu Check In", font = ("Helvetica", 10, "bold"), bg="red", width = 10, height = 1, command = backToHomeCheckIn).place(x = 99, y = 113, width=180, height=49)
+   
     verifikasiCheckInWalkIn()
 
     screenWalkIn.mainloop()
@@ -158,7 +178,7 @@ def isiDataPengunjung(screenWalkIn):
     screenFillData.config(bg = "white")
 
     showTitle(screenFillData)
-    
+    Label(screenFillData, text = "Isi data pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 140)
 
     global nikPelangganFill
     global NIKPelangganFill_var
@@ -298,6 +318,26 @@ def showCheckInBookingValid(screenBooking):
 
     screenBookValid.mainloop()
 
+def showCheckInWalkInValid(screenFillData):
+    global screenWalkInValid
+    screenFillData.destroy()
+    screenWalkInValid = Tk()
+    screenWalkInValid.title("myHotel")
+    screenWalkInValid.geometry("1270x690")
+    screenWalkInValid.config(bg = "white")
+
+    # Title
+    showTitle(screenWalkInValid)
+    # Section Title
+    Label(screenWalkInValid, text = "Check In", font = ("Helvetica", 12, "bold"), bg="white").place(x = 610, y = 140)
+    # Section Title
+    Label(screenWalkInValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 180)
+
+    # Menampilkan data check in pengunjung yang valid
+    validateCheckInWalkIn()
+
+    screenWalkInValid.mainloop()
+
 def prosesCheckIn():
     # Koneksi ke database
     try:
@@ -334,9 +374,6 @@ def prosesCheckIn():
 
     conn.commit()
 
-def backToHomeCheckIn():
-    homeCheckIn(window)
-
 def backToHomescreen():
     from home import homescreen
     homescreen(window)
@@ -345,4 +382,4 @@ def showTitle(screen):
     Label(screen, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 590, y = 100)
 
 def showTitleCheckIn(screen):
-    Label(screen, text = "Check-In", font = ("Helvetica", 10, "bold"), bg="white").place(x = 610, y = 140)
+    Label(screen, text = "Check-In", font = ("Helvetica", 25, "bold"), bg="white").place(x = 610, y = 140)
