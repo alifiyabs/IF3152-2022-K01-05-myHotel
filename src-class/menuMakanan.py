@@ -10,11 +10,13 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
+import home
 
 # Layar Utama Fitur Menampilkan Menu Makanan
 class ClassMenuMakanan():
     def homeMenuMakanan(self, screen):
         screen.destroy()
+        global root
         root = tk.Tk()
         root.title('Menu Makanan')
         root.geometry('1270x690')
@@ -56,8 +58,14 @@ class ClassMenuMakanan():
                 ('6.', '006', 'Teh', 3000),
                 ('7.', '007', 'Kopi', 3000)]
 
+        #Display back to home button
+        tk.Button(root,text="Kembali ke Menu Utama",command=self.homeFromMenuMakanan,bg="#FF595E", font = ("Helvetica", 10, "bold")).place(x = 75, y = 75, width=180, height=50)
+        
         # Menambahkan Daftar Menu ke Treeview
         for menu in menus:
             tree.insert('', tk.END, values=menu)
-
         root.mainloop()
+
+    def homeFromMenuMakanan(self):
+        from home import ClassHome
+        ClassHome().homescreen(root)
