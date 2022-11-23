@@ -15,6 +15,7 @@ import tkinter as tk
 import datetime
 import os
 import mariadb
+from tagihan import infotagihan
 
 # Layar utama menu check out
 def home(layar):
@@ -48,7 +49,7 @@ def verifyKamar():
     try:
         conn = mariadb.connect (
             user = 'root',
-            password = '*****',
+            password = '',
             host = 'localhost',
             port = 3306,
             database = 'myhotel'
@@ -130,7 +131,7 @@ def verifyData():
     try:
         conn = mariadb.connect (
             user = 'root',
-            password = '*****',
+            password = '',
             host = 'localhost',
             port = 3306,
             database = 'myhotel'
@@ -202,6 +203,7 @@ def validateCheckOut(screen1):
 
     # Cetak informasi kamar yang akan di-check out
     cetakValidateCheckOut()
+    
 
     # Button next menuju konfirmasi check out
     Button(screen2, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = confirmationCheckOut).place(x = 670, y = 580)
@@ -213,47 +215,7 @@ def validateCheckOut(screen1):
 
 # Cetak informasi kamar yang akan di-check out
 def cetakValidateCheckOut():
-    # Koneksi ke database
-    try:
-        conn = mariadb.connect (
-            user = 'root',
-            password = '*****',
-            host = 'localhost',
-            port = 3306,
-            database = 'myhotel'
-        )
-    except mariadb.Error as e:
-        print(f"Error connecting to MariaDB Platform: {e}")
-        databaseFail(screen2)
-
-    # Execute query
-    cur = conn.cursor()
-    try:
-        # Mengambil informasi kamar tamu yang diperlukan
-        statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut, totalTagihan FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s"
-        data = (int(NIKPelanggan.get()), int(noKamar.get()),)
-        cur.execute(statement, data)
-    except mariadb.Error as e:
-        print(f"Error retrieving entry form database: {e}")
-        databaseFail(screen2)
-        
-    # Tampilkan informasi dalam bentuk tabel
-    columns = (1,2,3,4,5,6)
-    tree = ttk.Treeview(screen2, height = 1, columns = columns, show = 'headings')
-    tree.place(x = 40, y = 220)
-    tree.heading(1, text= "Nomor Kamar")
-    tree.heading(2, text= "Nama Tamu")
-    tree.heading(3, text= "NIK Tamu")
-    tree.heading(4, text= "Tanggal Check In")
-    tree.heading(5, text= "Tanggal Check Out")
-    tree.heading(6, text= "Total Tagihan")
-
-    i = 1
-    for (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut, totalTagihan) in cur:
-        tree.insert(parent='', index=i, text='', values = (nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut, totalTagihan))
-        i += 1
-    
-    conn.commit()
+    infotagihan(NIKPelanggan, noKamar, screen2)
 
 # Mengonfirmasi perlakuan check out
 def confirmCheckOut(screen2):
@@ -286,7 +248,7 @@ def processCheckOut():
     try:
         conn = mariadb.connect (
             user = 'root',
-            password = '*****',
+            password = '',
             host = 'localhost',
             port = 3306,
             database = 'myhotel'

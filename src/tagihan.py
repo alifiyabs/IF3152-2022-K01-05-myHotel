@@ -1,52 +1,89 @@
-import src.checkOut
+from checkOut import *
 
 import sys 
 import mariadb
 
 import tkinter as tk
 
-def test():
-    # Connect to MariaDB Platform
-    # global noKamar
-    # global nomorKamar_var
-    # noKamar = StringVar()
+def infotagihan(NIKPelanggan, noKamar, screen):
+    # try:
+    #     conn = mariadb.connect(
+    #         user = "root",
+    #         password = "",
+    #         host = "localhost",
+    #         port = 3306,
+    #         database = "myhotel"
+    #     )
+    # except mariadb.Error as e:
+    #     print(f"Error connecting to MariaDB Platform: {e}")
+    #     sys.exit(1)
 
+    # Get Cursor
+    # cur = conn.cursor()
+    # try:
+    #     # Mengambil informasi kamar tamu yang diperlukan
+    #     statement = "SELECT hargaPerMalam FROM informasikamar WHERE nomorKamar = %s"
+    #     data = (int(noKamar.get()),)
+    #     cur.execute(statement, data)
+    #     row = cur.fetchone()
+    #     for x in row:
+    #         biayaKamar = x
+    #     print(biayaKamar)
+    #     # Label(screen, values = biayaKamar , fg = "red", font = ("Helvetica, 13")).pack()
+    # except mariadb.Error as e:
+    #     print(f"Error retrieving entry form database: {e}")
+    
+    # conn.commit()
+
+    # Koneksi ke database
     try:
-        conn = mariadb.connect(
-            user = "root",
-            password = "",
-            host = "localhost",
+        conn = mariadb.connect (
+            user = 'root',
+            password = '',
+            host = 'localhost',
             port = 3306,
-            database = "myhotel"
+            database = 'myhotel'
         )
     except mariadb.Error as e:
         print(f"Error connecting to MariaDB Platform: {e}")
-        sys.exit(1)
+        databaseFail(screen)
 
-    # Get Cursor
+    # Execute query
     cur = conn.cursor()
     try:
-        noKamar = int(input("Masukkan nomor kamar = "))
-        statement = f"SELECT hargaPerMalam FROM informasikamar WHERE nomorKamar = '{noKamar}'"
-        # data = (int(noKamar.get()))
-        # print(f"SELECT hargaPerMalam FROM informasikamar WHERE nomorKamar = '{noKamar}'")
-        # data = (int(input("Masukkan nomor kamar = ")))
-        data = (noKamar,)
-        print("statementnya = ", statement)
+        # Mengambil informasi kamar tamu yang diperlukan
+        statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut, totalTagihan FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s"
+        data = (int(NIKPelanggan.get()), int(noKamar.get()),)
         cur.execute(statement, data)
-        print('o')
-        row = cur.fetchone()
-        if (row == None):
-            print("Kamar invalid")
-        else:
-            print("masuk else")
-            for x in row:
-                biayaKamar = x
-            print(biayaKamar)
-    
+        
+        for data_tamu in cur:
+            nomorKamarVal = data_tamu[0]
+            namaPengunjungVal = data_tamu[1]
+            NIKVal = data_tamu[2]
+            tanggalCheckInVal = data_tamu[3]
+            tanggalCheckOutVal = data_tamu[4]
+            totalTagihanVal = data_tamu[5]
+
+        lf = tk.LabelFrame(screen, bg='white', padx=5, pady=10)
+        # lf.grid(row=0, column=0, padx=0, pady=35, sticky=CENTER)
+        lf.place(anchor="c", relx=.5, rely=.5)
+        
+        Label(lf, text= "Nomor Kamar", font = ("Helvetica", 13), bg= 'white').grid(row=0, column=0, padx=20, pady=5, sticky='W')
+        Label(lf, text= "Nama Tamu", font = ("Helvetica", 13), bg= 'white').grid(row=1, column=0, padx=20, pady=5, sticky='W')
+        Label(lf, text= "NIK Tamu", font = ("Helvetica", 13), bg= 'white').grid(row=2, column=0, padx=20, pady=5, sticky='W')
+        Label(lf, text= "Tanggal Check In", font = ("Helvetica", 13), bg= 'white').grid(row=3, column=0, padx=20, pady=5, sticky='W')
+        Label(lf, text= "Tanggal Check Out", font = ("Helvetica", 13), bg= 'white').grid(row=4, column=0, padx=20, pady=5, sticky='W')
+        Label(lf, text= "Total Tagihan", font = ("Helvetica", 13), bg= 'white').grid(row=5, column=0, padx=20, pady=5, sticky='W')
+
+        Label(lf, text=nomorKamarVal, font = ("Helvetica", 13), bg= 'white').grid(row=0, column=1, padx=20, pady=5, sticky='E')
+        Label(lf, text=namaPengunjungVal, font = ("Helvetica", 13), bg= 'white').grid(row=1, column=1, padx=20, pady=5, sticky='E')
+        Label(lf, text=NIKVal, font = ("Helvetica", 13), bg= 'white').grid(row=2, column=1, padx=20, pady=5, sticky='E')
+        Label(lf, text=tanggalCheckInVal, font = ("Helvetica", 13), bg= 'white').grid(row=3, column=1, padx=20, pady=5, sticky='E')
+        Label(lf, text=tanggalCheckOutVal, font = ("Helvetica", 13), bg= 'white').grid(row=4, column=1, padx=20, pady=5, sticky='E')
+        Label(lf, text=totalTagihanVal, font = ("Helvetica", 13), bg= 'white').grid(row=5, column=1, padx=20, pady=5, sticky='E')
+
     except mariadb.Error as e:
         print(f"Error retrieving entry form database: {e}")
+        databaseFail(screen)
 
-    conn.close()
-
-test()
+    conn.commit()
