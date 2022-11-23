@@ -46,6 +46,7 @@ def homeCheckOut(layar):
     Button(screen, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = verifyKamar).place(x = 785, y = 320,anchor="ne")
     Button(screen, text = "Kembali ke Menu Utama", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHome).place(x = 75, y = 75, width=180, height=50)
 
+    screen.resizable(False,False)
     screen.mainloop()
 
 def verifyKamar():
@@ -114,6 +115,7 @@ def kamarValid(screen):
     # Button back menuju halaman utama check out
     Button(screen1, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 550)
 
+    screen1.resizable(False,False)
     screen1.mainloop()
 
 # Fungsi untuk mengambil tanggal dari date picker calendar dan lanjut ke verifikasi data
@@ -214,6 +216,7 @@ def validateCheckOut(screen1):
     # Button back menuju halaman utama check out
     Button(screen2, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 400)
 
+    screen2.resizable(False,False)
     screen2.mainloop()
 
 # Cetak informasi kamar yang akan di-check out
@@ -287,6 +290,7 @@ def confirmCheckOut(screen2):
     # Button tidak untuk kembali ke halaman validasi check out
     Button(screen3, text = "Tidak", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = returntoValidateCheckOut).place(x = 485, y = 320)
 
+    screen3.resizable(False,False)
     screen3.mainloop()
 
 # Proses update database untuk melakukan check out
@@ -367,6 +371,7 @@ def successCheckOut(screen3):
     # Button kembali untuk menuju ke halaman utama check out
     Button(screen4, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = checkOutAgain).place(x = 485, y = 320)
 
+    screen4.resizable(False,False)
     screen4.mainloop()
 
 # Text tamu invalid karena identitas yang salah
@@ -403,6 +408,7 @@ def databaseFail(screen):
     Label(screen5, text = "Kegagalan Sistem!", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="center")
     Button(screen5, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 580)
 
+    screen5.resizable(False,False)
     screen5.mainloop()
 
 # Menampilkan judul aplikasi
