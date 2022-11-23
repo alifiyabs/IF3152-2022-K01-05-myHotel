@@ -18,11 +18,11 @@ class ClassMenuMakanan():
         root = tk.Tk()
         root.title('Menu Makanan')
         root.geometry('1270x690')
-        root.config(bg = "white")
+        root.config(bg = "#F7F0F5")
 
         # Mencetak Title dan Sub-Title Halaman
-        tk.Label(root, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x=575,y=40)
-        tk.Label(root, text="Menu Makanan", font=("Helvetica", 10, "bold"), bg="white", fg="black", width=100, anchor='w').place(x=580,y=80)
+        tk.Label(root, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="#F7F0F5").place(x=575,y=40)
+        tk.Label(root, text="Menu Makanan", font=("Helvetica", 10, "bold"), bg="#F7F0F5", fg="black", width=100, anchor='w').place(x=580,y=80)
 
         # Menampilkan Daftar Menu Makanan menggunakan Tabel
         # Mendefinisikan Kolom-Kolom Tabel
@@ -44,7 +44,7 @@ class ClassMenuMakanan():
 
         # Mengatur Style Treeview
         style = ttk.Style()
-        style.configure("Treeview", font=('helvetica', 12), background="white",foreground="black",fieldbackground='dodgerblue3',rowheight=40)
+        style.configure("Treeview", font=('helvetica', 12), background="#F7F0F5",foreground="black",fieldbackground='dodgerblue3', rowheight=40)
         #style.map("Treeview",background=[('selected','azure4')])
 
         # Men-generate Daftar Menu

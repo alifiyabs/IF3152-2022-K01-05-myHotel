@@ -55,9 +55,9 @@ class ClassPemesananMakanan():
         try:
             conn = mariadb.connect (
                 user = 'root',
-                password = 'sngshdcb29',
+                password = '',
                 host = 'localhost',
-                port = 3307,
+                port = 3306,
                 database = 'myhotel'
             )
         except mariadb.Error as e:
@@ -253,9 +253,9 @@ class ClassPemesananMakanan():
         try:
             conn = mariadb.connect (
                 user = 'root',
-                password = 'sngshdcb29',
+                password = '',
                 host = 'localhost',
-                port = 3307,
+                port = 3306,
                 database = 'myhotel'
             )
         except mariadb.Error as e:
@@ -291,9 +291,9 @@ class ClassPemesananMakanan():
         try:
             conn = mariadb.connect (
                 user = 'root',
-                password = 'sngshdcb29',
+                password = '',
                 host = 'localhost',
-                port = 3307,
+                port = 3306,
                 database = 'myhotel'
             )
         except mariadb.Error as e:
