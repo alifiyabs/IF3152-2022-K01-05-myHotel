@@ -41,7 +41,7 @@ class Login():
 
     def verifyLogin(self):
         if (username.get() == "admin" and password.get() == "hotel123"):
-            home_var = ClassHome()
+            home_var = Home()
             home_var.homescreen(screen)
         else:
             Label(screen, text = "Username atau password salah!", fg = "red", font = ("Helvetica, 12")).pack()
