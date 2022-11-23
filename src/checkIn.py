@@ -6,7 +6,7 @@ import sys
 import datetime
 import mariadb
 import tkinter as tk
-import datetime
+from datetime import datetime
 import os
 from tkcalendar import Calendar
 from tkinter import *
@@ -227,15 +227,15 @@ class CheckIn():
         screenFillData.mainloop()
 
 
-    # def getCheckInDate():
-        # global tglCheckIn
+    def getCheckInDate():
+        global tglCheckIn
 
-        # tglCheckIn = calendarIn.get_date()
+        tglCheckIn = calendarIn.get_date()
 
-    # def getCheckOutDate():
-        # global tglCheckOut
+    def getCheckOutDate():
+        global tglCheckOut
 
-        # tglCheckOut = calendarOut.get_date()
+        tglCheckOut = calendarOut.get_date()
 
     def validateCheckInBooking(self):
 
@@ -294,7 +294,7 @@ class CheckIn():
         cur = conn.cursor()
         try:
             statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut FROM informasiTamuHotel WHERE noKamar = %s AND statusKamar = %s"
-            data = (int(noKamarWalkIn.get()), "Available")
+            data = (int(noKamarWalkIn.get()), "Check-in")
             cur.execute(statement, data)
         except mariadb.Error as e:
             print(f"Error retrieving entry from Database: {e}")
@@ -332,6 +332,9 @@ class CheckIn():
         def ulangiCheckIn():
             self.homeCheckIn(screenBookValid)
 
+        def bukakonfirmasiCheckIn1():
+            self.konfirmasiCheckIn1(screenBookValid)
+
         # Section Title
         Label(screenBookValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 635, y = 180,anchor="center")
 
@@ -339,7 +342,7 @@ class CheckIn():
         self.validateCheckInBooking()
 
         # Button next menuju konfirmasi check in
-        Button(screenBookValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.konfirmasiCheckIn1).place(x = 785, y = 400,anchor="ne")
+        Button(screenBookValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = bukakonfirmasiCheckIn1).place(x = 785, y = 400,anchor="ne")
         
         # Button back menuju halaman utama check in
         Button(screenBookValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckIn).place(x = 485, y = 400)
@@ -377,7 +380,7 @@ class CheckIn():
 
     def konfirmasiCheckIn1(self, screenBookValid):
         global screenKonfirmasi1
-        screenBookValid.destroy
+        screenBookValid.destroy()
         screenKonfirmasi1 = Tk()
         screenKonfirmasi1.title("myHotel")
         screenKonfirmasi1.geometry("1270x690")
@@ -400,7 +403,7 @@ class CheckIn():
 
     def konfirmasiCheckIn2(self, screenWalkInValid):
         global screenKonfirmasi2
-        screenWalkInValid.destroy
+        screenWalkInValid.destroy()
         screenKonfirmasi2 = Tk()
         screenKonfirmasi2.title("myHotel")
         screenKonfirmasi2.geometry("1270x690")
@@ -451,7 +454,7 @@ class CheckIn():
             print(f"Error updating or retrieving entry form database: {e}")
 
         conn.commit()
-        self.checkInBookingBerhasil(screenBookBerhasil)
+        self.checkInBookingBerhasil(screenKonfirmasi1)
 
     def prosesCheckInWalk(self):
         # Koneksi ke database
@@ -477,8 +480,16 @@ class CheckIn():
 
             # Insert data pengunjung baru pada tabel informasi tamu hotel
             cur = conn.cursor()
-            statement = "INSERT INTO informasiTamuHotel (NIK, nomorKamar, tanggalCheckIn, tanggalCheckOut, namaPengunjung, statusPengunjung) VALUES (%s, %s, %s, %s, %s, %s)"
-            value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn, calendarOut, namaPengunjungFill.get(), "Check-In",)
+            statement = "INSERT INTO informasiTamuHotel (NIK, nomorKamar, tanggalCheckIn, tanggalCheckOut, tipeKamar, namaPengguna, durasiMenginap, statusPengunjung, totalTagihan) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            # durasi = datetime.strptime(datetime.strftime(calendarOut),"%Y/%m/%d") - datetime.strptime(datetime.strftime(calendarIn),"%Y/%m/%d")
+            # durasi = calendarOut - calendarIn
+            # durasi = (datetime.strptime(calendarOut.get_date(), '%Y-%m-%d')).date() - (datetime.strptime(calendarIn.get_date(), '%Y-%m-%d')).date()
+            if (int(noKamarWalkIn.get()) < 200):
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), 1, "Single" ,namaPengunjungFill.get(), "Check-In",300000)
+            elif (int(noKamarWalkIn.get()) < 300 and int(noKamarWalkIn.get()) >= 200):
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), 1, "Double" ,namaPengunjungFill.get(), "Check-In",600000)
+            else:
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), "2022-12-12", "2022-12-13", 1, "Deluxe" ,namaPengunjungFill.get(), "Check-In",1000000)
             cur.execute(statement,value)
         except mariadb.Error as e:
             print(f"Error updating or retrieving entry form database: {e}")
@@ -488,7 +499,7 @@ class CheckIn():
 
     def checkInBookingBerhasil(self, screenBookValid):
         global screenBookBerhasil
-        screenBookValid.destroy
+        screenBookValid.destroy()
         screenBookBerhasil = Tk()
         screenBookBerhasil.title("myHotel")
         screenBookBerhasil.geometry("1270x690")
@@ -498,11 +509,11 @@ class CheckIn():
         self.showSectionTitle(screenBookBerhasil)
 
         def ulangCheckInBook():
-            self.BookingCheckIn(screenBookValid)
+            self.BookingCheckIn(screenBookBerhasil)
         
         def backToHomescreen():
             from home import Home
-            Home().homescreen(screenBookValid)
+            Home().homescreen(screenBookBerhasil)
 
         Label(screenBookBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#FAF0E6").place(x = 635, y = 220,anchor="center")
 
@@ -515,7 +526,7 @@ class CheckIn():
 
     def checkInWalkInBerhasil(self, screenWalkInValid):
         global screenWalkInBerhasil
-        screenWalkInValid.destroy
+        screenWalkInValid.destroy()
         screenWalkInBerhasil = Tk()
         screenWalkInBerhasil.title("myHotel")
         screenWalkInBerhasil.geometry("1270x690")
