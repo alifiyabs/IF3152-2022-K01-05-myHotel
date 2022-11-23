@@ -1,3 +1,10 @@
+# Informasi Kamar
+# Penanggung jawab: Joe Putera 18217035
+
+# Prerequisite: Library tkinter, mariadb
+# Prerequisite: Database mariadb dengan nama myhotel
+# Notes: Replace ***** dengan password database mariadb (ada 3 field password)
+
 import sys
 import tkinter as tk
 import os
