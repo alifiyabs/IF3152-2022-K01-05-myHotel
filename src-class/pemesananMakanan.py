@@ -223,9 +223,11 @@ class ClassPemesananMakanan():
 
     # Fungsi untuk Memanggil Layar Home
     def homeFromPesan(self):
-        home.homescreen(screenPesan)
+        from home import ClassHome
+        ClassHome().homescreen(screenPesan)
     def homeFromKonfirmasiPesanan(self):
-        home.homescreen(screenKonfirmasiPesan)
+        from home import ClassHome
+        ClassHome().homescreen(screenKonfirmasiPesan)
 
     # Fungsi untuk Mengonfirmasi Pesanan
     def KonfirmasiPesanan(self, screen):
@@ -345,4 +347,5 @@ class ClassPemesananMakanan():
         btn.place(x=800,y=385)
 
     def homeFromPesananTercatat(self):
-        home.homescreen(screenPesananTercatat)
+        from home import ClassHome
+        ClassHome().homescreen(screenPesananTercatat)
