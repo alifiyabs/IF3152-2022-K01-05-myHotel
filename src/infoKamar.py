@@ -6,7 +6,7 @@ from tkinter import ttk
 # import mysql.connector as mysql
 import mariadb
 from riwayat import Riwayat
-from checkOut import home
+from checkOut import homeCheckOut
 
 def kamarSingle():
     pageSingle(screenhome)
