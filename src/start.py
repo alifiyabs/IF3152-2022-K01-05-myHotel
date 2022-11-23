@@ -1,4 +1,5 @@
-from login import homeLogin
+from login import Login
 from tkinter import *
+
 start = Tk()
-homeLogin(start)
+Login().homeLogin(start)
