@@ -5,10 +5,10 @@ import os
 from tkinter import ttk
 # import mysql.connector as mysql
 import mariadb
-from riwayat import ClassRiwayat
+from riwayat import Riwayat
 from checkOut import CheckOut
 from checkIn import CheckIn
-from infoKamar import ClassInfoKamar
+from infoKamar import InfoKamar
 # from pemesananMakanan1 import PemesananMakanan
 
 class Home():
