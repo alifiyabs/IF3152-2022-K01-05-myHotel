@@ -1,13 +1,11 @@
 import sys
 import tkinter as tk
-# from PIL import Image, ImageTk
 import os
 from tkinter import ttk
-# import mysql.connector as mysql
 import mariadb
 from riwayat import ClassRiwayat
 from checkOut import ClassCheckOut
-# from checkIn import homeCheckIn
+from checkIn import CheckIn
 from infoKamar import ClassInfoKamar
 from menuMakanan import ClassMenuMakanan
 from pemesananMakanan import ClassPemesananMakanan
@@ -21,8 +19,9 @@ class ClassHome():
         checkout_var = ClassCheckOut()
         checkout_var.homeCheckOut(screenhome)
 
-    # def bukaCheckIn(self):
-        # homeCheckIn(screenhome)
+    def bukaCheckIn(self):
+        checkin_var = CheckIn()
+        checkin_var.homeCheckIn(screenhome)
 
     def bukaInfoKamar(self):
         infokamar_var = ClassInfoKamar()
@@ -51,16 +50,16 @@ class ClassHome():
         InfoKamarBut = tk.Button(screenhome,text="Informasi Kamar",font=("helvetica",10,"bold"),bg="#DECBB7",command=self.bukaInfoKamar).place(x=310,y=270,width=150,height=75)
 
         #button Check-In
-        # CheckInBut = tk.Button(screenhome,text="Check-in",font=("helvetica",10,"bold"),bg="#DECBB7",command=self.bukaCheckIn).place(x=560,y=270,width=150,height=75)
+        CheckInBut = tk.Button(screenhome,text="Check-in",font=("helvetica",10,"bold"),bg="#DECBB7",command=self.bukaCheckIn).place(x=560,y=270,width=150,height=75)
 
         #button Check Out
         CheckOutBut = tk.Button(screenhome,text="Check-out",font=("helvetica",10,"bold"),bg="#DECBB7",command=self.bukaCheckOut).place(x=810,y=270,width=150,height=75)
 
         #button Riwayat Kamar
-        RiwayatBut = tk.Button(screenhome,text="Riwayat Kamar",font=("helvetica",10,"bold"),bg="#DECBB7",command=self.bukaRiwayat).place(x=510,y=420,width=150,height=75,anchor="center")
+        RiwayatBut = tk.Button(screenhome,text="Riwayat Kamar",font=("helvetica",10,"bold"),bg="#DECBB7",command=self.bukaRiwayat).place(x=310,y=400,width=150,height=75)
         
         #button Menu Makanan
-        menuMakananBut = tk.Button(screenhome, text="Menu Makanan", font=("helvetica",10,"bold"), bg="#DECBB7", command=self.bukaMenuMakanan).place(x=510,y=400,width=150,height=75)
+        menuMakananBut = tk.Button(screenhome, text="Menu Makanan", font=("helvetica",10,"bold"), bg="#DECBB7", command=self.bukaMenuMakanan).place(x=560,y=400,width=150,height=75)
 
         #button Pemesanan Makanan
         pemesananMakananBut = tk.Button(screenhome, text="Pemesanan Makanan", font=("helvetica",10,"bold"), bg="#DECBB7", command=self.bukaPemesananMakanan).place(x=810,y=400,width=150,height=75)
