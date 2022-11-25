@@ -12,7 +12,7 @@ Aplikasi 'myHotel' adalah aplikasi manajemen yang digunakan oleh hotel. Dengan f
 ## Cara Menjalankan Aplikasi
 ```
 - Buat database dengan nama "myHotel" dan dump "database_myHotel.sql"
-- Buka directory "..."
+- Buka directory "src-class" (src diabaikan)
 - Jalankan start.py untuk menjalankan aplikasi
 ```
 ## Daftar Modul yang Diimplementasi

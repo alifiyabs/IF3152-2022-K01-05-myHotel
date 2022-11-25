@@ -10,19 +10,21 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
+import home
 
 # Layar Utama Fitur Menampilkan Menu Makanan
 class ClassMenuMakanan():
     def homeMenuMakanan(self, screen):
         screen.destroy()
+        global root
         root = tk.Tk()
         root.title('Menu Makanan')
         root.geometry('1270x690')
-        root.config(bg = "white")
+        root.config(bg = "#F7F0F5")
 
         # Mencetak Title dan Sub-Title Halaman
-        tk.Label(root, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x=575,y=40)
-        tk.Label(root, text="Menu Makanan", font=("Helvetica", 10, "bold"), bg="white", fg="black", width=100, anchor='w').place(x=580,y=80)
+        tk.Label(root, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="#F7F0F5").place(x=575,y=40)
+        tk.Label(root, text="Menu Makanan", font=("Helvetica", 10, "bold"), bg="#F7F0F5", fg="black", width=100, anchor='w').place(x=580,y=80)
 
         # Menampilkan Daftar Menu Makanan menggunakan Tabel
         # Mendefinisikan Kolom-Kolom Tabel
@@ -44,7 +46,7 @@ class ClassMenuMakanan():
 
         # Mengatur Style Treeview
         style = ttk.Style()
-        style.configure("Treeview", font=('helvetica', 12), background="white",foreground="black",fieldbackground='dodgerblue3',rowheight=40)
+        style.configure("Treeview", font=('helvetica', 12), background="#F7F0F5",foreground="black",fieldbackground='dodgerblue3', rowheight=40)
         #style.map("Treeview",background=[('selected','azure4')])
 
         # Men-generate Daftar Menu
@@ -56,8 +58,14 @@ class ClassMenuMakanan():
                 ('6.', '006', 'Teh', 3000),
                 ('7.', '007', 'Kopi', 3000)]
 
+        #Display back to home button
+        tk.Button(root,text="Kembali ke Menu Utama",command=self.homeFromMenuMakanan,bg="#FF595E", font = ("Helvetica", 10, "bold")).place(x = 75, y = 75, width=180, height=50)
+        
         # Menambahkan Daftar Menu ke Treeview
         for menu in menus:
             tree.insert('', tk.END, values=menu)
-
         root.mainloop()
+
+    def homeFromMenuMakanan(self):
+        from home import ClassHome
+        ClassHome().homescreen(root)
