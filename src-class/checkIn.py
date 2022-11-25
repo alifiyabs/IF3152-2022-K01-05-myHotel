@@ -5,7 +5,7 @@
 
 import sys
 import datetime
-#import mariadb
+import mariadb
 import tkinter as tk
 from datetime import datetime
 import os
@@ -13,7 +13,6 @@ from tkcalendar import Calendar
 from tkinter import *
 from tkinter import ttk, messagebox
 from datetime import date
-# import mysql.connector
 
 class CheckIn():
     def homeCheckIn(self, halaman):
@@ -22,7 +21,7 @@ class CheckIn():
         window = Tk()
         window.title("myHotel")
         window.geometry("1270x690")
-        window.config(bg="white")
+        window.config(bg="#F7F0F5")
         
         # Tampilan Judul myHotel dan Judul Check In
         self.showTitle(window)
@@ -36,11 +35,11 @@ class CheckIn():
             self.checkInWalkIn(window)
 
         # Button bookingCheckIn menuju ke bookingCheckIn
-        Button(window, text = "Booking Check In", font = ("Helvetica", 15, "bold"), bg="#B0C4DE", width = 20, height = 2, command = bukaBookingCheckIn).place(x = 635, y = 230, anchor="center")
+        Button(window, text = "Booking Check In", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 15, height = 2, command = bukaBookingCheckIn).place(x = 805, y = 220,anchor="ne")
         # Button checkInWalkIn menuju ke checkInWalkIn
-        Button(window, text = "Check In Walk In", font = ("Helvetica", 15, "bold"), bg="#B0C4DE", width = 20, height = 2, command = bukaWalkIn).place(x = 635, y = 300, anchor="center")
+        Button(window, text = "Check In Walk In", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 15, height = 2, command = bukaWalkIn).place(x = 465, y = 220)
         # Button kembali ke menu utama
-        Button(window, text = "Kembali ke menu utama", font = ("Helvetica", 10, "bold"), bg="#FFA07A", width = 10, height = 1, command = self.backToHomescreen).place(x = 99, y = 113, width=180, height=49)
+        Button(window, text = "Kembali ke Menu Utama", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = self.backToHomescreen).place(x = 75, y = 75, width=180, height=50)
     
         window.mainloop()
 
@@ -50,7 +49,7 @@ class CheckIn():
         screenBooking = Tk()
         screenBooking.title("myHotel")
         screenBooking.geometry("1270x690")
-        screenBooking.config(bg="white")
+        screenBooking.config(bg="#F7F0F5")
 
         global nikPelangganBook
         global noKamarBook
@@ -65,22 +64,22 @@ class CheckIn():
         # Title
         self.showTitle(screenBooking)
         # Sectione Title
-        Label(screenBooking, text = "Booking Check-In", font = ("Helvetica", 20, "bold"), bg="white").place(x = 635, y = 140,anchor="center")
+        Label(screenBooking, text = "Booking Check-In", font = ("Helvetica", 10, "bold"), bg="#F7F0F5").place(x = 635, y = 140,anchor="center")
 
         # Entry box NIK Pelanggan
-        Label(screenBooking, text = "NIK Pelanggan", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
-        nikPelangganBook_var = Entry(screenBooking, textvariable= nikPelangganBook,font=("Helvetica", 15), bg = "#ADD8E6", fg = "black")
+        Label(screenBooking, text = "NIK Pelanggan", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 220)
+        nikPelangganBook_var = Entry(screenBooking, textvariable= nikPelangganBook,font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
         nikPelangganBook_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
 
         # Entry box Nomor Kamar 
-        Label(screenBooking, text = "Nomor Kamar ", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 320)
-        noKamarBook_var= Entry(screenBooking, textvariable= noKamarBook,font=("Helvetica", 15), bg = "#ADD8E6", fg = "black")
-        noKamarBook_var.place(x = 635, y = 350, width = 300, height = 30,anchor="n")
+        Label(screenBooking, text = "Nomor Kamar ", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 300)
+        noKamarBook_var= Entry(screenBooking, textvariable= noKamarBook,font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
+        noKamarBook_var.place(x = 635, y = 330, width = 300, height = 30,anchor="n")
 
         # Button next menuju cek ketersediaan kamar 
-        Button(screenBooking, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg="#90EE90", width = 15, height = 2, command = self.verifikasiBookingCheckIn).place(x = 670, y = 430)
+        Button(screenBooking, text = "Cek Kamar" ,font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.verifikasiBookingCheckIn).place(x = 670, y = 400)
         # Button kembali ke menu utama Check In
-        Button(screenBooking, text = "Kembali ke menu Check In", font = ("Helvetica", 10, "bold"), bg="#FFA07A", width = 10, height = 1, command = backToHomeCheckIn).place(x = 99, y = 113, width=180, height=49)
+        Button(screenBooking, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHomeCheckIn).place(x = 485, y = 400)
     
         
         screenBooking.mainloop()
@@ -91,7 +90,7 @@ class CheckIn():
         screenWalkIn = Tk()
         screenWalkIn.title("myHotel")
         screenWalkIn.geometry("1270x690")
-        screenWalkIn.config(bg="white")
+        screenWalkIn.config(bg="#F7F0F5")
 
         global noKamarWalkIn
         global noKamarWalkIn_var
@@ -109,14 +108,14 @@ class CheckIn():
         self.showTitle(screenWalkIn)
         Label(screenWalkIn, text = "Check-In Walk In", font = ("Helvetica", 20, "bold"), bg="white").place(x = 635, y = 140,anchor="center")
 
-        Label(screenWalkIn, text = "Nomor Kamar", font = ("Helvetica", 15, "bold"), bg="white").place(x = 500, y = 220)
-        noKamarWalkIn_var = Entry(screenWalkIn, textvariable = noKamarWalkIn, font=("Helvetica", 15), bg = "#ADD8E6", fg = "black")
+        Label(screenWalkIn, text = "Nomor Kamar", font = ("Helvetica", 12, "bold"), bg="white").place(x = 500, y = 220)
+        noKamarWalkIn_var = Entry(screenWalkIn, textvariable = noKamarWalkIn, font=("Helvetica", 15), bg = "#DECBB7", fg = "black")
         noKamarWalkIn_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
 
         # Button Cek ketersediaan kamar
-        Button(screenWalkIn, text = "Cek Kamar" ,font = ("Helvetica", 15, "bold"), bg= "#90EE90", width = 15, height = 2, command = self.verifikasiCheckInWalkIn).place(x = 670, y = 300)
+        Button(screenWalkIn, text = "Cek Kamar" ,font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width = 15, height = 2, command = self.verifikasiCheckInWalkIn).place(x = 670, y = 300)
         # Button kembali ke menu utama Check In
-        Button(screenWalkIn, text = "Kembali ke menu Check In", font = ("Helvetica", 10, "bold"), bg="#FFA07A", width = 10, height = 1, command = backToHomeCheckIn).place(x = 99, y = 113, width=180, height=49)
+        Button(screenWalkIn, text = "Kembali ke menu Check In", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHomeCheckIn).place(x = 99, y = 113, width=180, height=49)
 
         screenWalkIn.mainloop()
 
@@ -124,13 +123,13 @@ class CheckIn():
         # Buka koneksi dengan database mysql
 
         try:
-            conn = mysql.connector.connect (
+            conn = mariadb.connect (
                 user = 'root',
-                password = 'Bel2022Fiy@',
+                password = '*****',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
         
@@ -145,19 +144,19 @@ class CheckIn():
                 Label(screenBooking, text = "Tidak dapat melakukan check in karena kamar tidak valid!", fg = "red", font = ("Helvetica, 13")).pack()
             else:
                 self.showCheckInBookingValid(screenBooking)
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error retrieving entry form database: {e}")
 
     def verifikasiCheckInWalkIn(self):
         # Buka koneksi dengan database mysql
         try:
-            conn = mysql.connector.connect (
+            conn = mariadb.connect (
                 user = 'root',
-                password = 'Bel2022Fiy@',
+                password = '*****',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
         
@@ -172,7 +171,7 @@ class CheckIn():
                 Label(screenWalkIn, text = "Tidak dapat melakukan check in karena kamar tidak valid!", fg = "red", font = ("Helvetica, 13")).pack()
             else:
                 self.isiDataPengunjung(screenWalkIn)
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error retrieving entry form database: {e}")
 
     def isiDataPengunjung(self, screenWalkIn):
@@ -243,13 +242,13 @@ class CheckIn():
 
         # Connect to database
         try:
-            conn = mysql.connector.connect (
+            conn = mariadb.connect (
                 user = 'root',
-                password = 'Bel2022Fiy@',
+                password = '*****',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
 
@@ -258,7 +257,7 @@ class CheckIn():
             statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
             data = (int(nikPelangganBook.get()), int(noKamarBook.get()), "Book")
             cur.execute(statement, data)
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error retrieving entry from Database: {e}")
         
         # Tampilkan informasi 
@@ -328,29 +327,29 @@ class CheckIn():
         screenBookValid = Tk()
         screenBookValid.title("myHotel")
         screenBookValid.geometry("1270x690")
-        screenBookValid.config(bg = "white")
+        screenBookValid.config(bg = "#F7F0F5")
 
         # Title
         self.showTitle(screenBookValid)
         # Section Title
         self.showSectionTitle(screenBookValid)
-        def ulangiCheckIn():
-            self.homeCheckIn(screenBookValid)
+        def ulangiCheckInBooking():
+            self.BookingCheckIn(screenBookValid)
 
         def bukakonfirmasiCheckIn1():
             self.konfirmasiCheckIn1(screenBookValid)
 
         # Section Title
-        Label(screenBookValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 635, y = 180,anchor="center")
+        Label(screenBookValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="#F7F0F5").place(x = 635, y = 180,anchor="center")
 
         # Menampilkan data check in pengunjung yang valid
         self.validateCheckInBooking()
 
         # Button next menuju konfirmasi check in
-        Button(screenBookValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = bukakonfirmasiCheckIn1).place(x = 785, y = 600,anchor="ne")
+        Button(screenBookValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = bukakonfirmasiCheckIn1).place(x = 785, y = 500,anchor="ne")
         
         # Button back menuju halaman utama check in
-        Button(screenBookValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckIn).place(x = 485, y = 600)
+        Button(screenBookValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckInBooking).place(x = 485, y = 500)
 
         screenBookValid.mainloop()
 
@@ -361,7 +360,7 @@ class CheckIn():
         screenWalkInValid = Tk()
         screenWalkInValid.title("myHotel")
         screenWalkInValid.geometry("1270x690")
-        screenWalkInValid.config(bg = "#FAF0E6")
+        screenWalkInValid.config(bg = "#F7F0F5")
 
         # Title
         self.showTitle(screenWalkInValid)
@@ -393,7 +392,7 @@ class CheckIn():
         screenKonfirmasi1 = Tk()
         screenKonfirmasi1.title("myHotel")
         screenKonfirmasi1.geometry("1270x690")
-        screenKonfirmasi1.config(bg = "#FAF0E6")
+        screenKonfirmasi1.config(bg = "#F7F0F5")
 
         self.showTitle(screenKonfirmasi1)
         self.showSectionTitle(screenKonfirmasi1)
@@ -401,11 +400,11 @@ class CheckIn():
         def backToShowBook():
             self.showCheckInBookingValid(screenKonfirmasi1)
 
-        Label(screenKonfirmasi1, text = "Lanjutkan Check In?", font = ("Helvetica", 12, "bold"), bg= "#FAF0E6").place(x = 635, y = 220,anchor="center")
+        Label(screenKonfirmasi1, text = "Lanjutkan Check In?", font = ("Helvetica", 12, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenKonfirmasi1, text = "Ya", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=self.prosesCheckInBook).place(x = 785, y = 320, anchor="se")
-        Button(screenKonfirmasi1, text = "Tidak", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=backToShowBook).place(x = 785, y = 320, anchor="sw")
+        Button(screenKonfirmasi1, text = "Ya", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=10, height=1, command=self.prosesCheckInBook).place(x = 785, y = 320,anchor="ne")
+        Button(screenKonfirmasi1, text = "Tidak", font = ("Helvetica", 12, "bold"), bg= "#8F857D", width=10, height=1, command=backToShowBook).place(x = 485, y = 320)
 
         screenKonfirmasi1.resizable(False,False)
         screenKonfirmasi1.mainloop()
@@ -416,7 +415,7 @@ class CheckIn():
         screenKonfirmasi2 = Tk()
         screenKonfirmasi2.title("myHotel")
         screenKonfirmasi2.geometry("1270x690")
-        screenKonfirmasi2.config(bg = "#FAF0E6")
+        screenKonfirmasi2.config(bg = "#F7F0F5")
 
         self.showTitle(screenKonfirmasi2)
         self.showSectionTitle(screenKonfirmasi2)
@@ -424,11 +423,11 @@ class CheckIn():
         def backToShowBook():
             self.showCheckInWalkInValid(screenKonfirmasi2)
 
-        Label(screenKonfirmasi2, text = "Lanjutkan Check In?", font = ("Helvetica", 12, "bold"), bg= "#FAF0E6").place(x = 635, y = 220,anchor="center")
+        Label(screenKonfirmasi2, text = "Lanjutkan Check In?", font = ("Helvetica", 12, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenKonfirmasi2, text = "Ya", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=backToShowBook).place(x = 785, y = 320, anchor="se")
-        Button(screenKonfirmasi2, text = "Tidak", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=backToShowBook).place(x = 785, y = 320, anchor="sw")
+        Button(screenKonfirmasi2, text = "Ya", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=10, height=1, command=backToShowBook).place(x = 785, y = 320, anchor="se")
+        Button(screenKonfirmasi2, text = "Tidak", font = ("Helvetica", 12, "bold"), bg= "#FF595E", width=10, height=1, command=backToShowBook).place(x = 785, y = 320, anchor="sw")
 
         screenKonfirmasi2.resizable(False,False)
         screenKonfirmasi2.mainloop()
@@ -436,13 +435,13 @@ class CheckIn():
     def prosesCheckInBook(self):
         # Koneksi ke database
         try:
-            conn = mysql.connector.connect (
+            conn = mariadb.connect (
                 user = 'root',
-                password = 'Bel2022Fiy@',
+                password = '*****',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
         
@@ -459,7 +458,7 @@ class CheckIn():
             data = ("Unavailable", int(noKamarBook.get()),)
             cur.execute(statement, data)
 
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error updating or retrieving entry form database: {e}")
 
         conn.commit()
@@ -468,13 +467,13 @@ class CheckIn():
     def prosesCheckInWalk(self):
         # Koneksi ke database
         try:
-            conn = mysql.connector.connect (
+            conn = mariadb.connect (
                 user = 'root',
-                password = 'Bel2022Fiy@',
+                password = '*****',
                 host = 'localhost',
                 database = 'myHotel'
             )
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error connecting to Mysql Platform: {e}")
             sys.exit(1)
         
@@ -498,7 +497,7 @@ class CheckIn():
             else:
                 value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Deluxe", namaPengunjungFill.get(), 3 , "Check-In", 1000000)
             cur.execute(statement,value)
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error updating or retrieving entry form database: {e}")
 
         conn.commit()
@@ -510,7 +509,7 @@ class CheckIn():
         screenBookBerhasil = Tk()
         screenBookBerhasil.title("myHotel")
         screenBookBerhasil.geometry("1270x690")
-        screenBookBerhasil.config(bg = "#FAF0E6")
+        screenBookBerhasil.config(bg = "#F7F0F5")
         
         self.showTitle(screenBookBerhasil)
         self.showSectionTitle(screenBookBerhasil)
@@ -519,14 +518,14 @@ class CheckIn():
             self.BookingCheckIn(screenBookBerhasil)
         
         def backToHomescreen():
-            from home import Home
-            Home().homescreen(screenBookBerhasil)
+            from home import ClassHome
+            ClassHome().homescreen(screenBookBerhasil)
 
-        Label(screenBookBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#FAF0E6").place(x = 635, y = 220,anchor="center")
+        Label(screenBookBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenBookBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=backToHomescreen).place(x = 635, y = 320, anchor="center")
-        Button(screenBookBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=ulangCheckInBook).place(x = 635, y = 320, anchor="center")
+        Button(screenBookBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=10, height=1, command=backToHomescreen).place(x = 785, y = 320,anchor="ne")
+        Button(screenBookBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FF595E", width=10, height=1, command=ulangCheckInBook).place(x = 485, y = 320)
 
         screenBookBerhasil.resizable(False,False)
         screenBookBerhasil.mainloop()
@@ -537,7 +536,7 @@ class CheckIn():
         screenWalkInBerhasil = Tk()
         screenWalkInBerhasil.title("myHotel")
         screenWalkInBerhasil.geometry("1270x690")
-        screenWalkInBerhasil.config(bg = "#FAF0E6")
+        screenWalkInBerhasil.config(bg = "#F7F0F5")
         
         self.showTitle(screenWalkInBerhasil)
         self.showSectionTitle(screenWalkInBerhasil)
@@ -546,25 +545,25 @@ class CheckIn():
             self.BookingCheckIn(screenWalkInBerhasil)
         
         def backToHomescreen():
-            from home import Home
-            Home().homescreen(screenWalkInBerhasil)
+            from home import ClassHome
+            ClassHome().homescreen(screenWalkInBerhasil)
 
-        Label(screenWalkInBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#FAF0E6").place(x = 635, y = 220,anchor="center")
+        Label(screenWalkInBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenWalkInBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#90EE90", width=10, height=1, command=backToHomescreen).place(x = 635, y = 320, anchor="center")
-        Button(screenWalkInBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FFA07A", width=10, height=1, command=ulangCheckInWalk).place(x = 635, y = 320, anchor="center")
+        Button(screenWalkInBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=10, height=1, command=backToHomescreen).place(x = 635, y = 320, anchor="center")
+        Button(screenWalkInBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FF595E", width=10, height=1, command=ulangCheckInWalk).place(x = 635, y = 320, anchor="center")
 
         screenBookBerhasil.resizable(False,False)
         screenBookBerhasil.mainloop()
 
     # Back to home screen punya home screennya check in
     def backToHomescreen(self):
-        from home import Home
-        Home().homescreen(window)
+        from home import ClassHome
+        ClassHome().homescreen(window)
 
     def showTitle(self, screen):
-        Label(screen, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="white").place(x = 635, y = 100, anchor="center")
+        Label(screen, text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=100,anchor="center")
 
     def showSectionTitle(self, screen):
-        Label(screen, text = "Check-In", font = ("Helvetica", 25, "bold"), bg="white").place(x = 635, y = 140,anchor="center")
+        Label(screen, text="Check-in",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
