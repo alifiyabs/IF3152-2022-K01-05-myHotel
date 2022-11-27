@@ -2,15 +2,11 @@
 # Penanggung jawab: Adwa Sofia 18220109
 
 # Progress: Sudah berfungsi
-# Prerequisite: Install tkinter dan mariadb (beserta seluruh library yang diperlukan)
-# Prerequisite: Database mariadb dengan nama myhotel sudah ada
-# Notes: Replace ***** dengan password database, serta ganti port database jika diperlukan
+# Prerequisite: Install tkinter (beserta seluruh library yang diperlukan)
 
 # Import Library
 import tkinter as tk
 from tkinter import ttk
-from tkinter.messagebox import showinfo
-import home
 
 # Layar Utama Fitur Menampilkan Menu Makanan
 class ClassMenuMakanan():
@@ -20,34 +16,39 @@ class ClassMenuMakanan():
         root = tk.Tk()
         root.title('Menu Makanan')
         root.geometry('1270x690')
-        root.config(bg = "#F7F0F5")
+        root.configure(bg = '#F7F0F5')
 
         # Mencetak Title dan Sub-Title Halaman
-        tk.Label(root, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="#F7F0F5").place(x=575,y=40)
-        tk.Label(root, text="Menu Makanan", font=("Helvetica", 10, "bold"), bg="#F7F0F5", fg="black", width=100, anchor='w').place(x=580,y=80)
+        tk.Label(root, text= 'myHotel', font= ('Helvetica', 20, 'bold'), bg='#F7F0F5', fg='black').place(x=635,y=100,anchor="center")
+        tk.Label(root, text= 'Menu Makanan', font= ('Helvetica', 10, 'bold'), bg='#F7F0F5', fg='black').place(x=635,y=140,anchor="center")
+
+        # Menampilkan Tombol untuk Kembali ke Menu Utama
+        tk.Button(root, text='Kembali ke Menu Utama', command= self.homeFromMenuMakanan, bg='#FF595E', font= ('Helvetica', 10, 'bold')).place(x= 75, y= 75, width= 180, height= 50)
 
         # Menampilkan Daftar Menu Makanan menggunakan Tabel
         # Mendefinisikan Kolom-Kolom Tabel
         columns = ('no', 'id_makanan', 'nama', 'harga')
-
-        tree = ttk.Treeview(root, height=13, columns=columns, show='headings')
-        tree.pack(side=tk.BOTTOM, pady=20)
+        tree = ttk.Treeview(root, height=7, columns=columns, show='headings')
 
         # Mendefinisikan Headings
         tree.heading('no', text='No')
         tree.heading('id_makanan', text='ID Makanan')
         tree.heading('nama', text='Nama')
         tree.heading('harga', text='Harga')
+        
+        # Mendefinisikan Lebar Kolom
+        tree.column('no', width=30)
+        tree.column('id_makanan', width=80)
+        tree.column('nama', width=150)
+        tree.column('harga', width=100)
 
-        tree.column('no', width=30, anchor=tk.CENTER)
-        tree.column('id_makanan', width=80, anchor=tk.CENTER)
-        tree.column('nama', width=150, anchor=tk.CENTER)
-        tree.column('harga', width=100, anchor=tk.CENTER)
+        # Mendefinisikan Letak Tabel
+        tree.place(x= 635, y= 220, anchor= 'n')
 
-        # Mengatur Style Treeview
+        # Mengatur Style Tabel
         style = ttk.Style()
-        style.configure("Treeview", font=('helvetica', 12), background="#F7F0F5",foreground="black",fieldbackground='dodgerblue3', rowheight=40)
-        #style.map("Treeview",background=[('selected','azure4')])
+        style.configure('Treeview', font=('Helvetica', 10), background='#DECBB7', foreground='black', fieldbackground='#F7F0F5', rowheight=25)
+        style.map('Treeview', background=[('selected', '#8F857D')], foreground=[('selected','#F7F0F5')])
 
         # Men-generate Daftar Menu
         menus = [('1.', '001', 'Ayam Geprek', 20000),
@@ -57,15 +58,15 @@ class ClassMenuMakanan():
                 ('5.', '005', 'Sayur', 10000),
                 ('6.', '006', 'Teh', 3000),
                 ('7.', '007', 'Kopi', 3000)]
-
-        #Display back to home button
-        tk.Button(root,text="Kembali ke Menu Utama",command=self.homeFromMenuMakanan,bg="#FF595E", font = ("Helvetica", 10, "bold")).place(x = 75, y = 75, width=180, height=50)
         
         # Menambahkan Daftar Menu ke Treeview
         for menu in menus:
             tree.insert('', tk.END, values=menu)
+
+        root.resizable(False, False)
         root.mainloop()
 
+    # Fungsi untuk Kembali ke Menu Utama dari Fitur Menu Makanan
     def homeFromMenuMakanan(self):
         from home import ClassHome
         ClassHome().homescreen(root)
