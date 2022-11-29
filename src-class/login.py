@@ -1,6 +1,7 @@
 import sys
 from tkinter import *
 from tkinter import ttk, messagebox
+from PIL import ImageTk, Image
 from datetime import date
 from home import ClassHome
 import tkinter as tk
@@ -27,15 +28,33 @@ class ClassLogin():
         username = StringVar()
         password = StringVar()
 
-        Label(screen, text = "Username", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 220)
-        username_var = Entry(screen, textvariable = username, font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
-        username_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
+         # Insert img login
+        framelogin = Frame(screen, width=600, height=690)
+        framelogin.grid(row = 0, column = 0)
+        imglogin = PhotoImage(file = "/Users/alifiyabrizita/Documents/RPL-Implementasi/img/Login.png")
+        label = Label(framelogin, image=imglogin)
+        label.grid(row = 0, column = 0)
 
-        Label(screen, text = "Password", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 300)
-        password_var = Entry(screen, textvariable = password, show ="*", font=("Helvetica", 12), bg = "#DECBB7", fg = "black")
-        password_var.place(x = 635, y = 330, width = 300, height = 30,anchor="n")
+        # Create frame untuk input login (username, password)
+        frameinput = Frame(screen, bg="#F7F0F5", width=670, height=690)
+        frameinput.grid(row = 0, column= 2, padx=(235,0))
 
-        Button(screen, text = "Login", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.verifyLogin).place(x = 635, y = 390,anchor="n")
+        # Judul myHotel dan Login
+        MyHotellabelTitle = tk.Label(frameinput,text="myHotel",font=("Inter",20,"bold"),bg="#F7F0F5",fg="black").grid(row = 0, column = 2,pady=(0,10))
+        RiwayatlabelTitle = tk.Label(frameinput,text="Login",font=("Inter",15,"bold"),bg="#F7F0F5",fg="black").grid(row = 1, column = 2,pady=(0,30))
+
+        # Username
+        Label(frameinput, text = "Username", font = ("Inter", 12, "bold"), bg="#F7F0F5").grid(row = 2, column = 2, pady=(0,5))
+        username_var = Entry(frameinput, textvariable = username, font=("Inter", 12), bg = "#DECBB7", fg = "black")
+        username_var.grid(row = 3, column= 2, pady=(0,20))
+        
+        # Password
+        Label(frameinput, text = "Password", font = ("Inter", 12, "bold"), bg="#F7F0F5").grid(row = 4, column=2,pady=(0,5))
+        password_var = Entry(frameinput, textvariable = password, show ="*", font=("Inter", 12), bg = "#DECBB7", fg = "black")
+        password_var.grid(row = 5, column = 2,pady=(0,30))
+
+        # Button login
+        Button(frameinput, text = "Login", font = ("Inter", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.verifyLogin).grid(row= 6, column=2)
         screen.resizable(False,False)
         screen.mainloop()
 
