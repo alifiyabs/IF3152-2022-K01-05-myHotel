@@ -195,23 +195,26 @@ class CheckInWalkIn():
             statement = "UPDATE informasiKamar SET statusKamar = %s WHERE nomorKamar = %s"
             data = ("Unavailable", int(noKamarWalkIn.get()),)
             cur.execute(statement, data)
+            conn.commit()
 
             # Insert data pengunjung baru pada tabel informasi tamu hotel
-            cur = conn.cursor()
-            statement = "INSERT INTO informasiTamuHotel (NIK, nomorKamar, tanggalCheckIn, tanggalCheckOut, tipeKamar, namaPengguna, durasiMenginap, statusPengunjung, totalTagihan) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+           # cur = conn.cursor()
+           # statement = "INSERT INTO informasiTamuHotel (NIK, nomorKamar, tanggalCheckIn, tanggalCheckOut, tipeKamar, namaPengguna, durasiMenginap, statusPengunjung, totalTagihan) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
             # Kondisi jika 
-            if (int(noKamarWalkIn.get()) < 200 and int(noKamarWalkIn.get() >= 100)):
-                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Single", namaPengunjungFill.get(), 1, "Check-In", 300000)
-            elif (int(noKamarWalkIn.get()) < 300 and int(noKamarWalkIn.get()) >= 200):
-                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Double", namaPengunjungFill.get(), 2, "Check-In", 600000)
-            else:
-                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Deluxe", namaPengunjungFill.get(), 3 , "Check-In", 1000000)
-            cur.execute(statement,value)
+           # if (int(noKamarWalkIn.get()) < 200 and int(noKamarWalkIn.get() >= 100)):
+             #   value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Single", namaPengunjungFill.get(), 1, "Check-In", 300000)
+           # elif (int(noKamarWalkIn.get()) < 300 and int(noKamarWalkIn.get()) >= 200):
+              #  value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Double", namaPengunjungFill.get(), 2, "Check-In", 600000)
+           # else:
+            #    value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Deluxe", namaPengunjungFill.get(), 3 , "Check-In", 1000000)
+            #cur.execute(statement,value)
+            # conn.commit()
         except mysql.connector.Error as e:
             print(f"Error updating or retrieving entry form database: {e}")
 
-        conn.commit()
+        # conn.commit()
         self.showCheckInWalkInValid(screenKonfirmasi2)
+
 
 
     def getCheckInDate():
@@ -262,8 +265,6 @@ class CheckInWalkIn():
             from checkIn import CheckIn
             CheckIn.homeCheckIn(screenWalkInValid)
         
-        def bukaWalkInBerhasil():
-            self.checkInWalkInBerhasil
         
         # Section Title
         Label(screenWalkInValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="white").place(x = 635, y = 180,anchor="center")
@@ -272,12 +273,60 @@ class CheckInWalkIn():
         self.validateCheckInWalkIn()
 
         # Button next menuju konfirmasi check in
-        Button(screenWalkInValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = bukaWalkInBerhasil).place(x = 785, y = 600,anchor="ne")
+        Button(screenWalkInValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.insertToDatabase).place(x = 785, y = 600,anchor="ne")
         
         # Button back menuju halaman utama check in
         Button(screenWalkInValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = backToCheckIn).place(x = 485, y = 600,anchor="ne")
 
         screenWalkInValid.mainloop()
+
+    def insertToDatabase(self):
+
+        # Connect to database
+
+        # Buka koneksi dengan database mysql
+                #try:
+        #    conn = mariadb.connect (
+        #        user = 'root',
+        #       password = '*****',
+        #        host = 'localhost',
+        #       database = 'myHotel'
+        #    )
+        #except mariadb.Error as e:
+         #   print(f"Error connecting to Mysql Platform: {e}")
+          #  sys.exit(1)
+        
+        try:
+            conn = mysql.connector.connect (
+                user = 'root',
+                password = 'Bel2022Fiy@',
+                host = 'localhost',
+                database = 'myHotel',
+            )
+        except mysql.connector.Error as e:
+            print(f"Error connecting to Mysql Platform: {e}")
+            sys.exit(1)
+        
+        cur = conn.cursor()
+        
+        try:
+
+            # Insert data pengunjung baru pada tabel informasi tamu hotel
+            cur = conn.cursor()
+            statement = "INSERT INTO informasiTamuHotel (NIK, nomorKamar, tanggalCheckIn, tanggalCheckOut, tipeKamar, namaPengguna, durasiMenginap, statusPengunjung, totalTagihan) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            # Kondisi jika 
+            if (int(noKamarWalkIn.get()) < 200 and int(noKamarWalkIn.get() >= 100)):
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Single", namaPengunjungFill.get(), 1, "Check-In", 300000)
+            elif (int(noKamarWalkIn.get()) < 300 and int(noKamarWalkIn.get()) >= 200):
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Double", namaPengunjungFill.get(), 2, "Check-In", 600000)
+            else:
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Deluxe", namaPengunjungFill.get(), 3 , "Check-In", 1000000)
+            cur.execute(statement,value)
+        except mysql.connector.Error as e:
+            print(f"Error updating or retrieving entry form database: {e}")
+
+        conn.commit()
+        self.checkInWalkInBerhasil(screenWalkInValid)
         
     def checkInWalkInBerhasil(self, screenWalkInValid):
         global screenWalkInBerhasil
