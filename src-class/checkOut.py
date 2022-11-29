@@ -3,7 +3,6 @@
 
 # Prerequisite: Library tkcalendar, tkinter, mariadb
 # Prerequisite: Database mariadb dengan nama myhotel
-# Notes: Replace ***** dengan password database mariadb
 # Notes: Warna yang dipakai #F7F0F5, #DECBB7, #8F857D https://coolors.co/f7f0f5-decbb7-8f857d-5c5552-433633
 
 import sys
@@ -12,6 +11,7 @@ from tkinter import ttk, messagebox
 from tkcalendar import Calendar
 from datetime import date
 from tagihan import ClassTagihan
+from connectdatabase import conn
 import tkinter as tk
 import datetime
 import os
@@ -53,17 +53,7 @@ class ClassCheckOut():
 
     def verifyKamar(self):
         # Buka koneksi dengan database
-        try:
-            conn = mariadb.connect (
-                user = 'root',
-                password = '*****',
-                host = 'localhost',
-                port = 3306,
-                database = 'myhotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            self.databaseFail(screen)
+        conn
         
         # Execute query
         cur = conn.cursor()
@@ -90,6 +80,7 @@ class ClassCheckOut():
         screen1.geometry("1270x690")
         screen1.config(bg = "#F7F0F5")
 
+        # Judul halaman
         self.showTitle(screen1)
         self.showSectionTitle(screen1)
 
@@ -136,17 +127,7 @@ class ClassCheckOut():
         global tanggalCheckOut_date
 
         # Koneksi dengan database
-        try:
-            conn = mariadb.connect (
-                user = 'root',
-                password = '*****',
-                host = 'localhost',
-                port = 3306,
-                database = 'myhotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            self.databaseFail(screen1)
+        conn
         
         # Execute query
         cur = conn.cursor()
@@ -208,18 +189,11 @@ class ClassCheckOut():
         
         def confirmationTagihan():
             self.confirmTagihan(screen2)
-            # tagihan_var = ClassTagihan()
-            # tagihan_var.infotagihan(NIKPelanggan.get(),noKamar.get(),screen2)
 
         # Cetak informasi kamar yang akan di-check out
         self.cetakValidateCheckOut()
-
-        # Button next menuju konfirmasi check out
-        # Button(screen2, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = confirmationCheckOut).place(x = 785, y = 400,anchor="ne")
         
-        # Button back menuju halaman utama check out
-        # Button(screen2, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 400)
-
+        # Konfirmasi proses check out
         Label(screen2, text = "Lakukan check out?", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 340,anchor="n")
         Button(screen2, text = "Ya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = confirmationTagihan).place(x = 785, y = 400,anchor="ne")
         Button(screen2, text = "Tidak", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 400)
@@ -230,17 +204,7 @@ class ClassCheckOut():
     # Cetak informasi kamar yang akan di-check out
     def cetakValidateCheckOut(self):
         # Koneksi ke database
-        try:
-            conn = mariadb.connect (
-                user = 'root',
-                password = '*****',
-                host = 'localhost',
-                port = 3306,
-                database = 'myhotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            self.databaseFail(screen2)
+        conn
 
         # Execute query
         cur = conn.cursor()
@@ -260,8 +224,6 @@ class ClassCheckOut():
         tree.heading(1, text= "Nomor Kamar")
         tree.heading(2, text= "Nama Tamu")
         tree.heading(3, text= "NIK Tamu")
-        # tree.heading(4, text= "Tanggal Check In")
-        # tree.heading(5, text= "Tanggal Check Out")
 
         style = ttk.Style()
         style.configure('Treeview',font=("helvetica",10),background='#DECBB7',foreground='black',fieldbackground='#F7F0F5',rowheight=25)
@@ -282,14 +244,15 @@ class ClassCheckOut():
         screen3.title("myHotel")
         screen3.geometry("1270x690")
         screen3.config(bg = "#F7F0F5")
-
+        
+        # Judul halaman
         self.showTitle(screen3)
 
         tagihan_var = ClassTagihan()
         tagihan_var.showSectionTitle(screen3)
         tagihan_var.infotagihan(NIKPelanggan.get(),noKamar.get(),screen3)
         
-        # Button ya untuk melakukan proses check out
+        # Button bayar untuk melakukan proses check out
         Button(screen3, text = "Bayar", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.processCheckOut).place(x = 635, y = 520,anchor="n")
         
         screen3.resizable(False,False)
@@ -298,17 +261,7 @@ class ClassCheckOut():
     # Proses update database untuk melakukan check out
     def processCheckOut(self):
         # Koneksi ke database
-        try:
-            conn = mariadb.connect (
-                user = 'root',
-                password = '*****',
-                host = 'localhost',
-                port = 3306,
-                database = 'myhotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            self.databaseFail(screen2)
+        conn
 
         # Execute query
         cur = conn.cursor()
@@ -354,6 +307,7 @@ class ClassCheckOut():
         screen4.geometry("1270x690")
         screen4.config(bg = "#F7F0F5")
 
+        # Judul halaman
         self.showTitle(screen4)
         self.showSectionTitle(screen4)
 
@@ -400,12 +354,14 @@ class ClassCheckOut():
         screen5.geometry("1270x690")
         screen5.config(bg = "#F7F0F5")   
 
+        # Judul halaman
         self.showTitle(screen5)
         self.showSectionTitle(screen5)
 
         def ulangiCheckOut():
             self.ulangi(screen5)
 
+        # Tombol kembali ke laman utama check out
         Label(screen5, text = "Kegagalan Sistem!", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="center")
         Button(screen5, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckOut).place(x = 485, y = 580)
 
@@ -419,6 +375,3 @@ class ClassCheckOut():
     # Menampilkan judul section check out
     def showSectionTitle(self, screen):
         Label(screen, text="Check-out",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
-
-    def getNomorKamar(self):
-        print(noKamar.get())
