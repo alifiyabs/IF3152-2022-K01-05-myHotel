@@ -9,6 +9,8 @@ import datetime
 import os
 import mariadb
 
+pathToImg = os.path.abspath('.') + '/img'
+
 class ClassLogin():
     def homeLogin(self, layar):
         global screen
@@ -31,7 +33,7 @@ class ClassLogin():
          # Insert img login
         framelogin = Frame(screen, width=600, height=690)
         framelogin.grid(row = 0, column = 0)
-        imglogin = PhotoImage(file = "/Users/alifiyabrizita/Documents/RPL-Implementasi/img/Login.png")
+        imglogin = PhotoImage(file=pathToImg+'/Login.png')
         label = Label(framelogin, image=imglogin)
         label.grid(row = 0, column = 0)
 
