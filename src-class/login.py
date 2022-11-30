@@ -9,7 +9,7 @@ import datetime
 import os
 import mariadb
 
-pathToImg = os.path.abspath('.') + '/img'
+pathToImg = os.path.abspath('..') + '\\img'
 
 class ClassLogin():
     def homeLogin(self, layar):
@@ -30,7 +30,7 @@ class ClassLogin():
          # Insert img login
         framelogin = Frame(screen, width=600, height=690)
         framelogin.grid(row = 0, column = 0)
-        imglogin = PhotoImage(file=pathToImg+'/Login.png')
+        imglogin = PhotoImage(file=pathToImg+'\\Login.png')
         label = Label(framelogin, image=imglogin)
         label.grid(row = 0, column = 0)
 
