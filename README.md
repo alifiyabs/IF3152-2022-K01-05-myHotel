@@ -12,7 +12,7 @@ Aplikasi 'myHotel' adalah aplikasi manajemen yang digunakan oleh hotel. Dengan f
 ## Cara Menjalankan Aplikasi
 ```
 - Buat database dengan nama "myHotel" dan dump "database_myHotel.sql"
-- Buka directory "src-class" (src diabaikan)
+- Buka directory "src-class"
 - Buka file connectiondatabase.py dan ubah password sesuai password mariaDB
 - Jalankan start.py untuk menjalankan aplikasi
 - Lakukan login dengan username: admin & password: hotel123
