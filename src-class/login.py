@@ -40,7 +40,7 @@ class ClassLogin():
 
         # Judul myHotel dan Login
         MyHotellabelTitle = tk.Label(frameinput,text="myHotel",font=("Inter",20,"bold"),bg="#F7F0F5",fg="black").grid(row = 0, column = 2,pady=(0,10))
-        RiwayatlabelTitle = tk.Label(frameinput,text="Login",font=("Inter",15,"bold"),bg="#F7F0F5",fg="black").grid(row = 1, column = 2,pady=(0,30))
+        RiwayatlabelTitle = tk.Label(frameinput,text="Login",font=("Inter",10,"bold"),bg="#F7F0F5",fg="black").grid(row = 1, column = 2,pady=(0,30))
 
         # Username
         Label(frameinput, text = "Username", font = ("Inter", 12, "bold"), bg="#F7F0F5").grid(row = 2, column = 2, pady=(0,5))
