@@ -12,6 +12,7 @@ from tkinter import ttk
 import mariadb
 from riwayat import ClassRiwayat
 from checkOut import ClassCheckOut
+from connectdatabase import *
 
 class ClassInfoKamar():
     def kamarSingle(self):
@@ -64,17 +65,6 @@ class ClassInfoKamar():
             self.Infokamar(screenhome)
 
         #Connect to database
-        try:
-            conn = mariadb.connect(
-                user='root',
-                password='*****',
-                host='localhost',
-                database='myhotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            sys.exit(1)
-        
         cursor = conn.cursor()
         
         #Single page heading
@@ -122,7 +112,7 @@ class ClassInfoKamar():
         ValueNomorKamar = tk.Label(screenhome,text=(list(arrayNo)),font=("helvetica",12,),bg="#F7F0F5",fg="black",width=100,anchor='w').place(x=125,y=440)
 
         #Close DB connection
-        conn.close()
+        cursor.close()
 
         #Display back to home button
         KembaliBut = tk.Button(screenhome,text="Kembali",command=kembali,bg="#FF595E", font = ("Helvetica", 10, "bold")).place(x = 75, y = 75, width=180, height=50)
@@ -141,17 +131,6 @@ class ClassInfoKamar():
             self.Infokamar(screenhome)
 
         #Connect to database
-        try:
-            conn = mariadb.connect(
-                user='root',
-                password='*****',
-                host='localhost',
-                database='myhotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            sys.exit(1)
-        
         cursor = conn.cursor()
         
         #Double page heading
@@ -199,7 +178,7 @@ class ClassInfoKamar():
         ValueNomorKamar = tk.Label(screenhome,text=(list(arrayNo)),font=("helvetica",12,),bg="#F7F0F5",fg="black",width=100,anchor='w').place(x=125,y=440)
 
         #Close DB connection
-        conn.close()
+        cursor.close()
 
         #Display back to home button
         KembaliBut = tk.Button(screenhome,text="Kembali",command=kembali,bg="#FF595E", font = ("Helvetica", 10, "bold")).place(x = 75, y = 75, width=180, height=50)
@@ -216,18 +195,6 @@ class ClassInfoKamar():
 
         def kembali():
             self.Infokamar(screenhome)
-
-        #Connect to database
-        try:
-            conn = mariadb.connect(
-                user='root',
-                password='*****',
-                host='localhost',
-                database='myhotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            sys.exit(1)
         
         cursor = conn.cursor()
         
@@ -276,7 +243,7 @@ class ClassInfoKamar():
         ValueNomorKamar = tk.Label(screenhome,text=(list(arrayNo)),font=("helvetica",12,),bg="#F7F0F5",fg="black",width=100,anchor='w').place(x=125,y=440)
 
         #Close DB connection
-        conn.close()
+        cursor.close()
 
         #Display back to home button
         KembaliBut = tk.Button(screenhome,text="Kembali",command=kembali,bg="#FF595E", font = ("Helvetica", 10, "bold")).place(x = 75, y = 75, width=180, height=50)

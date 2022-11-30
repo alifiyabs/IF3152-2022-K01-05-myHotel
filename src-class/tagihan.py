@@ -44,7 +44,7 @@ class ClassTagihan():
             print(f"Error retrieving entry form database: {e}")
             self.databaseFail(screen)
 
-        conn.commit()
+        cur.commit()
 
     def showSectionTitle(self, screen):
         Label(screen, text="Tagihan",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
