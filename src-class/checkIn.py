@@ -1,5 +1,7 @@
 # Check In
 # Nama Penanggung Jawab : Alifiya Brizita Shary
+
+# Progress : Sudah berfungsi
 # Melakukan Check In pada Hotel, yaitu Booking Check In dan Check In Walk In
 # Menggunakan warna-warna yang sudah dilabeli hex color
 

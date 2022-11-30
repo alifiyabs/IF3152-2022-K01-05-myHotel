@@ -1,6 +1,8 @@
 # Check In Walk In
 # Nama Penanggung Jawab : Alifiya Brizita Shary
-# Melakukan Check In pada Hotel, yaitu Booking Check In dan Check In Walk In
+
+# Progress : Sudah berfungsi
+# Melakukan Check In pada Hotel, yaitu Check In Walk In yang dilakukan secara langsung ditempat
 # Menggunakan warna-warna yang sudah dilabeli hex color
 
 import sys
