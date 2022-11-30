@@ -18,8 +18,8 @@ from tkinter import *
 from tkinter import ttk, messagebox
 from datetime import date
 
-pathToImg = os.path.abspath('.') + '/img'
-#pathToImg = os.path.abspath('..') + '//img' --> UNTUK WINDOWS YA
+#pathToImg = os.path.abspath('.') + '/img'
+pathToImg = os.path.abspath('..') + '\\img'
 
 class ClassCheckIn():
     def homeCheckIn(self, halaman):
@@ -47,7 +47,7 @@ class ClassCheckIn():
         self.showSectionTitle(framecheckin)
         
          # Insert img CheckIn
-        imgcheckin = PhotoImage(file=pathToImg+'/CheckIn.png')
+        imgcheckin = PhotoImage(file=pathToImg+'\\CheckIn.png')
         label = Label(framecheckin, image=imgcheckin)
         label.grid(row=2,column=1,columnspan=2, pady=(0,80))
 
