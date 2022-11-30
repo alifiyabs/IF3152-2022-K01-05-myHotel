@@ -140,7 +140,7 @@ class ClassBookingCheckIn():
 
         # Section Title
         Label(screenBookValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="#F7F0F5").place(x = 635, y = 180,anchor="center")
-        Label(screenBookValid, text = "Lanjutkan Check-in?", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 635, y = 200,anchor="center")
+        Label(screenBookValid, text = "Lanjutkan Check-in?", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="center")
 
         # Menampilkan data check in pengunjung yang valid
         self.validateCheckInBooking()

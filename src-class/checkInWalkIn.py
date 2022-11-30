@@ -44,7 +44,7 @@ class ClassCheckInWalkIn():
         noKamarWalkIn_var.place(x = 635, y = 250, width = 300, height = 30,anchor="n")
 
         # Button Cek ketersediaan kamar
-        Button(screenWalkIn, text = "Cek Kamar" ,font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width = 15, height = 2, command = self.verifikasiCheckInWalkIn).place(x = 670, y = 300)
+        Button(screenWalkIn, text = "Cek Kamar" ,font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width = 15, height = 1, command = self.verifikasiCheckInWalkIn).place(x = 670, y = 300)
         # Button kembali ke menu utama Check In
         Button(screenWalkIn, text = "Kembali ke menu Check In", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHomeCheckIn).place(x = 99, y = 113, width=180, height=49)
 
@@ -78,7 +78,7 @@ class ClassCheckInWalkIn():
         screenFillData.config(bg = "#F7F0F5")
 
         Label(screenFillData, text = "Check-in Walk In", font = ("Helvetica", 20, "bold"), bg="#F7F0F5").place(x=635, y=50, anchor="center")
-        Label(screenFillData, text = "Pengisian data pengunjung", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 635, y = 90, anchor="center")
+        Label(screenFillData, text = "Pengisian data pengunjung", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 635, y = 90, anchor="center")
 
         global nikPengunjungFill
         global NIKPengunjungFill_var
@@ -97,30 +97,30 @@ class ClassCheckInWalkIn():
             self.showCheckInWalkInValid(screenFillData)
 
         # Entry box NIK
-        Label(screenFillData, text = "NIK Pelanggan", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 485, y = 160)
+        Label(screenFillData, text = "NIK Pelanggan", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 160)
         nikPengunjungFill_var = Entry(screenFillData, textvariable = nikPengunjungFill, font=("Helvetica", 15), bg = "#DECBB7", fg = "black")
         nikPengunjungFill_var.place(x = 635, y = 190, width = 300, height = 30, anchor = "n")
 
         # Entry box Nama Pelanggan
-        Label(screenFillData, text = "Nama Pelanggan", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 485, y = 230)
+        Label(screenFillData, text = "Nama Pelanggan", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 485, y = 230)
         namaPengunjungFill_var = Entry(screenFillData, textvariable = namaPengunjungFill, font=("Helvetica", 15), bg = "#DECBB7", fg = "black")
         namaPengunjungFill_var.place(x = 635, y = 260, width = 300, height = 30, anchor = "n")
 
         # Entry box tanggal check in
-        Label(screenFillData, text = "Tanggal Check In", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 420, y = 330)
+        Label(screenFillData, text = "Tanggal Check In", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 420, y = 330)
         calendarIn = Calendar(screenFillData, selectmode = 'day', date_pattern = 'yyyy-mm-dd', background= "#d5a6bd")
         calendarIn.place(x = 485, y = 360, width = 200, height = 200, anchor = "n")
 
         # Entry box tanggal check out
-        Label(screenFillData, text = "Tanggal Check Out", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 710, y = 330)
+        Label(screenFillData, text = "Tanggal Check Out", font = ("Helvetica", 12, "bold"), bg="#F7F0F5").place(x = 710, y = 330)
         calendarOut = Calendar(screenFillData, selectmode = 'day', date_pattern = 'yyyy-mm-dd', background="#d5a6bd")
         calendarOut.place(x = 785, y = 360, width = 200, height = 200, anchor = "n")
 
         # Button next menuju verifikasi data yang sudah terinsert pada database
-        Button(screenFillData, text = "Berikutnya", font = ("Helvetica", 15, "bold"), bg="#71BC68", width = 10, height = 1, command = bukaCheckInValid).place(x = 670, y = 600)
+        Button(screenFillData, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#71BC68", width = 10, height = 1, command = bukaCheckInValid).place(x = 670, y = 600)
         
         # Button back menuju halaman utama check out
-        Button(screenFillData, text = "Batal", font = ("Helvetica", 15, "bold"), bg="#F4AB6A", width = 10, height = 1, command = backToHomeCheckIn).place(x = 485, y = 600)
+        Button(screenFillData, text = "Batal", font = ("Helvetica", 12, "bold"), bg="#F4AB6A", width = 10, height = 1, command = backToHomeCheckIn).place(x = 485, y = 600)
 
         screenFillData.mainloop()
     
@@ -143,10 +143,10 @@ class ClassCheckInWalkIn():
             cur = conn.cursor()
             statement = "INSERT INTO informasiTamuHotel (NIK, nomorKamar, tanggalCheckIn, tanggalCheckOut, tipeKamar, namaPengunjung, durasiMenginap, statusPengunjung, totalTagihan) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
             # Kondisi jika 
-            if (int(noKamarWalkIn.get()) < 200 and int(noKamarWalkIn.get() >= 100)):
+            if (int(noKamarWalkIn.get()) < 200 and int(noKamarWalkIn.get()) >= 100):
                 value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Single", namaPengunjungFill.get(), 1, "Check-In", 300000)
             elif (int(noKamarWalkIn.get()) < 300 and int(noKamarWalkIn.get()) >= 200):
-                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Double", namaPengunjungFill.get(), 2, "Check-In", 600000)
+                value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Double", namaPengunjungFill.get(), 2, "Check-In", 1200000)
             else:
                 value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Deluxe", namaPengunjungFill.get(), 3 , "Check-In", 1000000)
             cur.execute(statement,value)
@@ -236,7 +236,7 @@ class ClassCheckInWalkIn():
             from home import ClassHome
             ClassHome().homescreen(screenWalkInBerhasil)
 
-        Label(screenWalkInBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
+        Label(screenWalkInBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 18, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
 
         # Button
         Button(screenWalkInBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=15, height=1, command=backToHomescreen).place(x = 635, y = 320, anchor="center")
