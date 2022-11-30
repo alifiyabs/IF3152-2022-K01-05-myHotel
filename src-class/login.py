@@ -19,9 +19,6 @@ class ClassLogin():
         screen.title("myHotel")
         screen.geometry("1270x690")
         screen.config(bg = "#F7F0F5")
-
-        MyHotellabelTitle = tk.Label(screen,text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=100,anchor="center")
-        RiwayatlabelTitle = tk.Label(screen,text="Login",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
         
         global username
         global username_var
