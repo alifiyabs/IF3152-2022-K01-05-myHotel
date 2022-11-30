@@ -50,7 +50,7 @@ class ClassTagihan():
             ClassHome().homescreen(screen)
         Button(screen, text = "Kembali ke Menu Utama", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHome).place(x = 75, y = 75, width=180, height=50)
 
-        cur.commit()
+        conn.commit()
 
     def showSectionTitle(self, screen):
         Label(screen, text="Tagihan",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")

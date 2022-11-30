@@ -11,7 +11,7 @@ import datetime
 import tkinter as tk
 from datetime import datetime
 import os
-import mysql.connector
+# import mysql.connector
 from connectdatabase import conn
 # from tkcalendar import Calendar
 from tkinter import *
