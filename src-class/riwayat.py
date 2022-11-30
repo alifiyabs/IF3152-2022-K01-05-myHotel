@@ -10,6 +10,7 @@ import tkinter as tk
 import os
 from tkinter import ttk
 import mariadb
+from connectdatabase import conn
 
 class ClassRiwayat():
     def Riwayat(self, screen):
@@ -37,17 +38,18 @@ class ClassRiwayat():
         style.configure('Treeview',font=("helvetica",10),background='#DECBB7',foreground='black',fieldbackground='#F7F0F5',rowheight=25)
         style.map('Treeview',background=[("selected","#8F857D")],foreground=[("selected","#F7F0F5")])
 
-        try:
-            conn = mariadb.connect(
-                user='root',
-                password='sngshdcb29',
-                host='localhost',
-                database='myhotel',
-                port=3307
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            sys.exit(1)
+        conn 
+        #try:
+        #    conn = mariadb.connect(
+        #        user='root',
+        #        password='*****',
+        #        host='localhost',
+        #        database='myhotel',
+        #        port=3307
+        #    )
+        #except mariadb.Error as e:
+        #    print(f"Error connecting to MariaDB Platform: {e}")
+        #    sys.exit(1)
         
         cur = conn.cursor()
         cur.execute('SELECT * FROM riwayatkamar')
@@ -57,7 +59,7 @@ class ClassRiwayat():
             tree.insert(parent='',index=i,text='',values=(nomorKamar, totalDipesan, totalPendapatanKamar))
             i = i + 1
 
-        conn.close()
+        conn.commit()
         
         def kembaliHome():
             from home import ClassHome
