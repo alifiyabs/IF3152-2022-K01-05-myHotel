@@ -10,12 +10,13 @@ import tkinter as tk
 from datetime import datetime
 import os
 import mysql.connector
+from connectdatabase import conn
 from tkcalendar import Calendar
 from tkinter import *
 #from tkinter import ttk, messagebox
 from datetime import date
 
-class CheckInWalkIn():
+class ClassCheckInWalkIn():
 
     def checkInWalkIn(self, window):
         global screenWalkIn
@@ -31,8 +32,8 @@ class CheckInWalkIn():
         
         # Kembali ke halaman utama Check In
         def backToHomeCheckIn():
-            from checkIn import CheckIn
-            CheckIn().homeCheckIn(screenWalkIn)
+            from checkIn import ClassCheckIn
+            ClassCheckIn().homeCheckIn(screenWalkIn)
 
         # Entry nomor kamar
         self.showTitle(screenWalkIn)
@@ -50,22 +51,9 @@ class CheckInWalkIn():
         screenWalkIn.mainloop()
 
     def verifikasiCheckInWalkIn(self):
-        # Buka koneksi dengan database mariadb
         
-        # conn
-
-        # Buka koneksi dengan database mysql
-
-        try:
-            conn = mysql.connector.connect (
-                user = 'root',
-                password = 'Bel2022Fiy@',
-                host = 'localhost',
-                database = 'myHotel',
-            )
-        except mysql.connector as e:
-            print(f"Error connecting to Mysql Platform: {e}")
-            sys.exit(1)
+        # Buka koneksi ke Database
+        conn
         
         # Execute Query
         cur = conn.cursor()
@@ -89,7 +77,7 @@ class CheckInWalkIn():
         screenFillData.geometry("1270x690")
         screenFillData.config(bg = "#F7F0F5")
 
-        Label(screenFillData, text = "myHotel", font = ("Helvetica", 20, "bold"), bg="#F7F0F5").place(x=635, y=50, anchor="center")
+        Label(screenFillData, text = "Check-in Walk In", font = ("Helvetica", 20, "bold"), bg="#F7F0F5").place(x=635, y=50, anchor="center")
         Label(screenFillData, text = "Pengisian data pengunjung", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 635, y = 90, anchor="center")
 
         global nikPengunjungFill
@@ -110,22 +98,22 @@ class CheckInWalkIn():
 
         # Entry box NIK
         Label(screenFillData, text = "NIK Pelanggan", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 485, y = 160)
-        nikPengunjungFill_var = Entry(screenFillData, textvariable = nikPengunjungFill, font=("Helvetica", 15), bg = "light grey", fg = "black")
+        nikPengunjungFill_var = Entry(screenFillData, textvariable = nikPengunjungFill, font=("Helvetica", 15), bg = "#DECBB7", fg = "black")
         nikPengunjungFill_var.place(x = 635, y = 190, width = 300, height = 30, anchor = "n")
 
         # Entry box Nama Pelanggan
-        Label(screenFillData, text = "Nama Pelanggan", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 485, y = 220)
-        namaPengunjungFill_var = Entry(screenFillData, textvariable = namaPengunjungFill, font=("Helvetica", 15), bg = "light grey", fg = "black")
-        namaPengunjungFill_var.place(x = 635, y = 250, width = 300, height = 30, anchor = "n")
+        Label(screenFillData, text = "Nama Pelanggan", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 485, y = 230)
+        namaPengunjungFill_var = Entry(screenFillData, textvariable = namaPengunjungFill, font=("Helvetica", 15), bg = "#DECBB7", fg = "black")
+        namaPengunjungFill_var.place(x = 635, y = 260, width = 300, height = 30, anchor = "n")
 
         # Entry box tanggal check in
-        Label(screenFillData, text = "Tanggal Check In", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 385, y = 330)
-        calendarIn = Calendar(screenFillData, selectmode = 'day', date_pattern = 'yyyy-mm-dd')
+        Label(screenFillData, text = "Tanggal Check In", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 420, y = 330)
+        calendarIn = Calendar(screenFillData, selectmode = 'day', date_pattern = 'yyyy-mm-dd', background= "#d5a6bd")
         calendarIn.place(x = 485, y = 360, width = 200, height = 200, anchor = "n")
 
         # Entry box tanggal check out
-        Label(screenFillData, text = "Tanggal Check Out", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 775, y = 330)
-        calendarOut = Calendar(screenFillData, selectmode = 'day', date_pattern = 'yyyy-mm-dd')
+        Label(screenFillData, text = "Tanggal Check Out", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 710, y = 330)
+        calendarOut = Calendar(screenFillData, selectmode = 'day', date_pattern = 'yyyy-mm-dd', background="#d5a6bd")
         calendarOut.place(x = 785, y = 360, width = 200, height = 200, anchor = "n")
 
         # Button next menuju verifikasi data yang sudah terinsert pada database
@@ -137,20 +125,9 @@ class CheckInWalkIn():
         screenFillData.mainloop()
     
     def prosesCheckInWalk(self):
-        # Koneksi ke database
-        
-        # conn
-
-        try:
-            conn = mysql.connector.connect (
-                user = 'root',
-                password = 'Bel2022Fiy@',
-                host = 'localhost',
-                database = 'myHotel',
-            )
-        except mysql.connector.Error as e:
-            print(f"Error connecting to Mysql Platform: {e}")
-            sys.exit(1)
+       
+        # Buka Koneksi Ke Database
+        conn
         
         cur = conn.cursor()
         try:
@@ -225,24 +202,21 @@ class CheckInWalkIn():
 
         # Kembali ke homescreen
         def backToCheckIn():
-            from checkIn import CheckIn
-            CheckIn.homeCheckIn(screenWalkInValid)
-
-        # Ke layar check in berhasil
-        def bukaCheckInWalkInBerhasil():
-            self.checkInWalkInBerhasil(screenWalkInValid)
+            from checkIn import ClassCheckIn
+            ClassCheckIn().homeCheckIn(screenWalkInValid)
         
         # Section Title
         Label(screenWalkInValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="#F7F0F5").place(x = 635, y = 180,anchor="center")
-
-        # Menampilkan data check in pengunjung yang valid
+        Label(screenWalkInValid, text = "Lanjutkan Check-in?", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 635, y = 220,anchor="center")
+        
+        #  Menampilkan data check in pengunjung yang valid
         self.validateCheckInWalkIn()
 
         # Button next menuju konfirmasi check in
-        Button(screenWalkInValid, text = "Lanjutkan", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.prosesCheckInWalk).place(x = 785, y = 600,anchor="ne")
+        Button(screenWalkInValid, text = "Ya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.prosesCheckInWalk).place(x = 785, y = 500,anchor="ne")
         
         # Button back menuju halaman utama check in
-        Button(screenWalkInValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = backToCheckIn).place(x = 485, y = 600,anchor="ne")
+        Button(screenWalkInValid, text = "Tidak", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = backToCheckIn).place(x = 485, y = 500)
 
         screenWalkInValid.resizable(FALSE,FALSE)
         screenWalkInValid.mainloop()
@@ -257,9 +231,6 @@ class CheckInWalkIn():
         
         self.showTitle(screenWalkInBerhasil)
         self.showSectionTitle(screenWalkInBerhasil)
-
-        def ulangCheckInWalk():
-            self.checkInWalkIn(screenWalkInBerhasil)
         
         def backToHomescreen():
             from home import ClassHome
@@ -268,8 +239,7 @@ class CheckInWalkIn():
         Label(screenWalkInBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 12, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenWalkInBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=15, height=1, command=backToHomescreen).place(x = 785, y = 320, anchor="ne")
-        Button(screenWalkInBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FF595E", width=10, height=1, command=ulangCheckInWalk).place(x = 485, y = 320)
+        Button(screenWalkInBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=15, height=1, command=backToHomescreen).place(x = 635, y = 320, anchor="center")
 
         screenWalkInBerhasil.resizable(False,False)
         screenWalkInBerhasil.mainloop()
@@ -278,4 +248,4 @@ class CheckInWalkIn():
         Label(screen, text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=100,anchor="center")
 
     def showSectionTitle(self, screen):
-        Label(screen, text="Check-in",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
+        Label(screen, text="Check-in Walk In",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")

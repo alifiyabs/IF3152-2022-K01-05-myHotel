@@ -7,15 +7,18 @@ import sys
 import datetime
 # import mariadb
 import tkinter as tk
-from datetime import datetime
+#from datetime import datetime
 import os
-# import mysql.connector
+#import mysql.connector
 from tkcalendar import Calendar
 from tkinter import *
 from tkinter import ttk, messagebox
 from datetime import date
 
-class CheckIn():
+pathToImg = os.path.abspath('.') + '/img'
+#pathToImg = os.path.abspath('.') + '/img' --> UNTUK WINDOWS YA
+
+class ClassCheckIn():
     def homeCheckIn(self, halaman):
         global window
         halaman.destroy()
@@ -23,26 +26,36 @@ class CheckIn():
         window.title("myHotel")
         window.geometry("1270x690")
         window.config(bg="#F7F0F5")
-        
-        # Tampilan Judul myHotel dan Judul Check In
-        self.showTitle(window)
-        self.showSectionTitle(window)
+
+        framecheckin = Frame(window, width=1270, height=690, highlightthickness=0, bg="#F7F0F5")
+        framecheckin.place(anchor="center", relx=0.5, rely=0.5)
 
         # Buka halaman Booking Check In
         def bukaBookingCheckIn():
-            from bookingCheckIn import BookingCheckIn
-            BookingCheckIn().BookingCheckIn(window)
+            from bookingCheckIn import ClassBookingCheckIn
+            ClassBookingCheckIn().BookingCheckIn(window)
         # Buka halaman Booking Walk In
         def bukaWalkIn():
-            from checkInWalkIn import CheckInWalkIn
-            CheckInWalkIn().checkInWalkIn(window)
+            from checkInWalkIn import ClassCheckInWalkIn
+            ClassCheckInWalkIn().checkInWalkIn(window)
+        
+        # Tampilan Judul myHotel dan Judul Check In
+        self.showTitle(framecheckin)
+        self.showSectionTitle(framecheckin)
+        
+         # Insert img CheckIn
+        imgcheckin = PhotoImage(file=pathToImg+'/CheckIn.png')
+        label = Label(framecheckin, image=imgcheckin)
+        label.grid(row=2,column=1,columnspan=2, pady=(0,80))
+
 
         # Button bookingCheckIn menuju ke bookingCheckIn
-        Button(window, text = "Booking Check In", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 15, height = 2, command = bukaBookingCheckIn).place(x = 805, y = 220,anchor="ne")
+        Button(framecheckin, text = "Booking Check In", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 15, height = 2, command = bukaBookingCheckIn).grid(row=3,column=1, padx=(0,20), pady=(0,100))
         # Button checkInWalkIn menuju ke checkInWalkIn
-        Button(window, text = "Check In Walk In", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 15, height = 2, command = bukaWalkIn).place(x = 465, y = 220)
+        Button(framecheckin, text = "Check In Walk In", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 15, height = 2, command = bukaWalkIn).grid(row=3,column=2, padx=(20,0), pady=(0,100))
         # Button kembali ke menu utama
-        Button(window, text = "Kembali ke Menu Utama", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = self.backToHomescreen).place(x = 75, y = 75, width=180, height=50)
+        Button(window, text = "Kembali ke Menu Utama", font = ("Helvetica", 10, "bold"), bg="#FF595E", command = self.backToHomescreen).place(x = 75, y = 75, width=180, height=50)
+
     
         window.mainloop()
 
@@ -52,7 +65,7 @@ class CheckIn():
         ClassHome().homescreen(window)
 
     def showTitle(self, screen):
-        Label(screen, text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=100,anchor="center")
+        Label(screen, text="myHotel",font=("helvetica",20,"bold"),bg="#F7F0F5",fg="black").grid(row=0,column=1,columnspan=2)
 
     def showSectionTitle(self, screen):
-        Label(screen, text="Check-in",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").place(x=635,y=140,anchor="center")
+        Label(screen, text="Check-in",font=("helvetica",10,"bold"),bg="#F7F0F5",fg="black").grid(row=1,column=1,columnspan=2,pady=(0,100))

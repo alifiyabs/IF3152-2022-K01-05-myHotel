@@ -5,7 +5,7 @@ from tkinter import ttk
 import mariadb
 from riwayat import ClassRiwayat
 from checkOut import ClassCheckOut
-from checkIn import CheckIn
+from checkIn import ClassCheckIn
 from infoKamar import ClassInfoKamar
 from menuMakanan import ClassMenuMakanan
 from pemesananMakanan import ClassPemesananMakanan
@@ -20,7 +20,7 @@ class ClassHome():
         checkout_var.homeCheckOut(screenhome)
 
     def bukaCheckIn(self):
-        checkin_var = CheckIn()
+        checkin_var = ClassCheckIn()
         checkin_var.homeCheckIn(screenhome)
 
     def bukaInfoKamar(self):
