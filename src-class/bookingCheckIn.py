@@ -7,11 +7,10 @@
 
 import sys
 import datetime
-# import mariadb
+import mariadb
 import tkinter as tk
 from datetime import datetime
 import os
-# import mysql.connector
 from connectdatabase import conn
 # from tkcalendar import Calendar
 from tkinter import *
@@ -79,7 +78,7 @@ class ClassBookingCheckIn():
                 Label(screenBooking, text = "Tidak dapat melakukan check in karena kamar tidak valid!", fg = "red", font = ("Helvetica, 13")).pack()
             else:
                 self.showCheckInBookingValid(screenBooking)
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error retrieving entry form database: {e}")
 
     def validateCheckInBooking(self):
@@ -93,7 +92,7 @@ class ClassBookingCheckIn():
             statement = "SELECT nomorKamar, namaPengunjung, NIK, tanggalCheckIn, tanggalCheckOut FROM informasiTamuHotel WHERE NIK = %s AND nomorKamar = %s AND statusPengunjung = %s"
             data = (int(nikPelangganBook.get()), int(noKamarBook.get()), "Book")
             cur.execute(statement, data)
-        except mysql.connector.Error as e:
+        except mariadb.connector.Error as e:
             print(f"Error retrieving entry from Database: {e}")
         
         # Tampilkan informasi 
@@ -174,7 +173,7 @@ class ClassBookingCheckIn():
             data = ("Unavailable", int(noKamarBook.get()),)
             cur.execute(statement, data)
 
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error updating or retrieving entry form database: {e}")
 
         conn.commit()

@@ -7,7 +7,7 @@
 
 import sys
 import datetime
-# import mariadb
+import mariadb
 import tkinter as tk
 #from datetime import datetime
 import os

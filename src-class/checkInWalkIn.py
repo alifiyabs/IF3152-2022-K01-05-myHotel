@@ -7,7 +7,7 @@
 
 import sys
 import datetime
-# import mariadb
+import mariadb
 import tkinter as tk
 from datetime import datetime
 import os
@@ -68,7 +68,7 @@ class ClassCheckInWalkIn():
                 Label(screenWalkIn, text = "Tidak dapat melakukan check in karena kamar tidak valid!", fg = "red", font = ("Helvetica, 13")).pack()
             else:
                 self.isiDataPengunjung(screenWalkIn)
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error retrieving entry form database: {e}")
 
     def isiDataPengunjung(self, screenWalkIn):
@@ -153,7 +153,7 @@ class ClassCheckInWalkIn():
                 value = (int(nikPengunjungFill.get()), int(noKamarWalkIn.get()), calendarIn.get_date(), calendarOut.get_date(), "Deluxe", namaPengunjungFill.get(), 3 , "Check-In", 1000000)
             cur.execute(statement,value)
             conn.commit()
-        except mysql.connector.Error as e:
+        except mariadb.Error as e:
             print(f"Error updating or retrieving entry form database: {e}")
 
         # conn.commit()
