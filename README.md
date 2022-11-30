@@ -37,6 +37,9 @@ Nama Penanggung Jawab : Rachita Caronica Jonur
 
 NIM : 18220091
 
+Capture Screen Tampilann Layar
+![tagihan](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/img/Tagihan.jpg)
+
 ### Riwayat Kamar
 Nama Penanggung Jawab : Kyla Aisha
 
