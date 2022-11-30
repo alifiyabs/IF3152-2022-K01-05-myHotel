@@ -13,6 +13,7 @@ Aplikasi 'myHotel' adalah aplikasi manajemen yang digunakan oleh hotel. Dengan f
 ```
 - Buat database dengan nama "myHotel" dan dump "database_myHotel.sql"
 - Buka directory "src-class" (src diabaikan)
+- Buka file connectiondatabase.py dan ubah password sesuai password mariaDB
 - Jalankan start.py untuk menjalankan aplikasi
 - Lakukan login dengan username: admin & password: hotel123
 ```
@@ -21,6 +22,12 @@ Aplikasi 'myHotel' adalah aplikasi manajemen yang digunakan oleh hotel. Dengan f
 Nama Penanggung Jawab : Joe Putera
 
 NIM : 18217035
+
+Capture Screen Tampilan Layar Informasi Kamar
+![info](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/info.png)
+![info2](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/info2.png)
+![info3](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/info3.png)
+![info4](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/info4.png)
 
 ### Check-in
 Nama Penanggung Jawab : Alifiya Brizita Shary
@@ -44,7 +51,7 @@ Nama Penanggung Jawab : Theodore Justin Lionar
 
 NIM : 18220011
 
-Capture Screen Tampilan Layar
+Capture Screen Tampilan Layar Check Out
 ![checkOut](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/checkOut.png)
 ![checkOut2](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/checkOut2.png)
 ![checkOut3](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/checkOut3.png)
@@ -55,7 +62,7 @@ Nama Penanggung Jawab : Rachita Caronica Jonur
 
 NIM : 18220091
 
-Capture Screen Tampilan Layar
+Capture Screen Tampilan Layar Tagihan
 ![tagihan](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/Tagihan.jpg)
 
 ### Riwayat Kamar
@@ -64,7 +71,7 @@ Nama Penanggung Jawab : Kyla Aisha
 NIM : 18220093
 
 Capture Screen Tampilan Layar Riwayat
-![ri
+![riwayat](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/doc/riwayat.png)
 
 ### Pemesanan Makanan
 Nama Penanggung Jawab : Adwa Sofia
