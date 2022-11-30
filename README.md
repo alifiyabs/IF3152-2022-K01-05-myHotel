@@ -32,12 +32,18 @@ Nama Penanggung Jawab : Theodore Justin Lionar
 
 NIM : 18220011
 
+Capture Screen Tampilan Layar
+![checkOut](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/img/checkOut.png)
+![checkOut2](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/img/checkOut2.png)
+![checkOut3](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/img/checkOut3.png)
+![checkOut4](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/img/checkOut4.png)
+
 ### Tagihan
 Nama Penanggung Jawab : Rachita Caronica Jonur
 
 NIM : 18220091
 
-Capture Screen Tampilann Layar
+Capture Screen Tampilan Layar
 ![tagihan](https://github.com/alifiyabs/IF3152-2022-K01-05-myHotel/blob/main/img/Tagihan.jpg)
 
 ### Riwayat Kamar
