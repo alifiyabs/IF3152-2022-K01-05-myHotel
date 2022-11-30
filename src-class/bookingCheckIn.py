@@ -10,12 +10,13 @@ import tkinter as tk
 from datetime import datetime
 import os
 import mysql.connector
+from connectdatabase import conn
 # from tkcalendar import Calendar
 from tkinter import *
 from tkinter import ttk, messagebox
 from datetime import date
 
-class BookingCheckIn():
+class ClassBookingCheckIn():
 
     def BookingCheckIn(self, window):
         global screenBooking
@@ -33,8 +34,8 @@ class BookingCheckIn():
         noKamarBook = StringVar()
 
         def backToHomeCheckIn():
-            from checkIn import CheckIn
-            CheckIn().homeCheckIn(screenBooking)
+            from checkIn import ClassCheckIn
+            ClassCheckIn().homeCheckIn(screenBooking)
 
         # Title
         self.showTitle(screenBooking)
@@ -54,36 +55,16 @@ class BookingCheckIn():
         # Button next menuju cek ketersediaan kamar 
         Button(screenBooking, text = "Cek Kamar" ,font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.verifikasiBookingCheckIn).place(x = 670, y = 400)
         # Button kembali ke menu utama Check In
-        Button(screenBooking, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHomeCheckIn).place(x = 485, y = 400)
+        Button(screenBooking, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHomeCheckIn).place(x = 520, y = 400)
     
         
         screenBooking.mainloop()
 
 
     def verifikasiBookingCheckIn(self):
-        # Buka koneksi dengan database mysql
-
-        #try:
-        #    conn = mariadb.connect (
-        #        user = 'root',
-        #       password = '*****',
-        #        host = 'localhost',
-        #       database = 'myHotel'
-        #    )
-        #except mariadb.Error as e:
-         #   print(f"Error connecting to Mysql Platform: {e}")
-          #  sys.exit(1)
         
-        try:
-            conn = mysql.connector.connect (
-                user = 'root',
-                password = 'Bel2022Fiy@',
-                host = 'localhost',
-                database = 'myHotel',
-            )
-        except mysql.connector.Error as e:
-            print(f"Error connecting to Mysql Platform: {e}")
-            sys.exit(1)
+        # Buka koneksi dengan database mysql
+        conn
         
         # Execute Query
         cur = conn.cursor()
@@ -102,27 +83,8 @@ class BookingCheckIn():
     def validateCheckInBooking(self):
 
         # Connect to database
-                #try:
-        #    conn = mariadb.connect (
-        #        user = 'root',
-        #       password = '*****',
-        #        host = 'localhost',
-        #       database = 'myHotel'
-        #    )
-        #except mariadb.Error as e:
-         #   print(f"Error connecting to Mysql Platform: {e}")
-          #  sys.exit(1)
 
-        try:
-            conn = mysql.connector.connect (
-                user = 'root',
-                password = 'Bel2022Fiy@',
-                host = 'localhost',
-                database = 'myHotel',
-            )
-        except mysql.connector.Error as e:
-            print(f"Error connecting to Mysql Platform: {e}")
-            sys.exit(1)
+        conn
 
         cur = conn.cursor()
         try:
@@ -169,6 +131,7 @@ class BookingCheckIn():
         self.showTitle(screenBookValid)
         # Section Title
         self.showSectionTitle(screenBookValid)
+
         def ulangiCheckInBooking():
             self.BookingCheckIn(screenBookValid)
 
@@ -177,66 +140,24 @@ class BookingCheckIn():
 
         # Section Title
         Label(screenBookValid, text = "Detail Pesanan Pengunjung", font = ("Helvetica", 10, "bold"), bg="#F7F0F5").place(x = 635, y = 180,anchor="center")
+        Label(screenBookValid, text = "Lanjutkan Check-in?", font = ("Helvetica", 15, "bold"), bg="#F7F0F5").place(x = 635, y = 200,anchor="center")
 
         # Menampilkan data check in pengunjung yang valid
         self.validateCheckInBooking()
 
         # Button next menuju konfirmasi check in
-        Button(screenBookValid, text = "Berikutnya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = bukakonfirmasiCheckIn1).place(x = 785, y = 500,anchor="ne")
+        Button(screenBookValid, text = "Ya", font = ("Helvetica", 12, "bold"), bg="#DECBB7", width = 10, height = 1, command = self.prosesCheckInBook).place(x = 785, y = 500,anchor="ne")
         
         # Button back menuju halaman utama check in
-        Button(screenBookValid, text = "Kembali", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckInBooking).place(x = 485, y = 500)
+        Button(screenBookValid, text = "Tidak", font = ("Helvetica", 12, "bold"), bg="#8F857D", width = 10, height = 1, command = ulangiCheckInBooking).place(x = 485, y = 500)
 
         screenBookValid.mainloop()
-
-    def konfirmasiCheckIn1(self, screenBookValid):
-        global screenKonfirmasi1
-        screenBookValid.destroy()
-        screenKonfirmasi1 = Tk()
-        screenKonfirmasi1.title("myHotel")
-        screenKonfirmasi1.geometry("1270x690")
-        screenKonfirmasi1.config(bg = "#F7F0F5")
-
-        self.showTitle(screenKonfirmasi1)
-        self.showSectionTitle(screenKonfirmasi1)
-
-        def backToShowBook():
-            self.showCheckInBookingValid(screenKonfirmasi1)
-
-        Label(screenKonfirmasi1, text = "Lanjutkan Check In?", font = ("Helvetica", 12, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
-
-        # Button
-        Button(screenKonfirmasi1, text = "Ya", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=10, height=1, command=self.prosesCheckInBook).place(x = 785, y = 320,anchor="ne")
-        Button(screenKonfirmasi1, text = "Tidak", font = ("Helvetica", 12, "bold"), bg= "#8F857D", width=10, height=1, command=backToShowBook).place(x = 485, y = 320)
-
-        screenKonfirmasi1.resizable(False,False)
-        screenKonfirmasi1.mainloop()
 
         
     def prosesCheckInBook(self):
         # Koneksi ke database
 
-                #try:
-        #    conn = mariadb.connect (
-        #        user = 'root',
-        #       password = '*****',
-        #        host = 'localhost',
-        #       database = 'myHotel'
-        #    )
-        #except mariadb.Error as e:
-         #   print(f"Error connecting to Mysql Platform: {e}")
-          #  sys.exit(1)
-       
-        try:
-            conn = mysql.connector.connect (
-                user = 'root',
-                password = 'Bel2022Fiy@',
-                host = 'localhost',
-                database = 'myHotel',
-            )
-        except mysql.connector.Error as e:
-            print(f"Error connecting to Mysql Platform: {e}")
-            sys.exit(1)
+        conn
         
         cur = conn.cursor()
         try:
@@ -255,7 +176,7 @@ class BookingCheckIn():
             print(f"Error updating or retrieving entry form database: {e}")
 
         conn.commit()
-        self.checkInBookingBerhasil(screenKonfirmasi1)
+        self.checkInBookingBerhasil(screenBookValid)
 
     def checkInBookingBerhasil(self, screenBookValid):
         global screenBookBerhasil
@@ -267,9 +188,6 @@ class BookingCheckIn():
         
         self.showTitle(screenBookBerhasil)
         self.showSectionTitle(screenBookBerhasil)
-
-        def ulangCheckInBook():
-            self.BookingCheckIn(screenBookBerhasil)
         
         def backToHomescreen():
             from home import ClassHome
@@ -278,8 +196,7 @@ class BookingCheckIn():
         Label(screenBookBerhasil, text = "Check In Berhasil dilakukan!", font = ("Helvetica", 18, "bold"), bg= "#F7F0F5").place(x = 635, y = 220,anchor="center")
 
         # Button
-        Button(screenBookBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=15, height=1, command=backToHomescreen).place(x = 785, y = 320,anchor="ne")
-        Button(screenBookBerhasil, text = "Kembali", font = ("Helvetica", 12, "bold"), bg= "#FF595E", width=10, height=1, command=ulangCheckInBook).place(x = 485, y = 320)
+        Button(screenBookBerhasil, text = "Selesai Check In", font = ("Helvetica", 12, "bold"), bg= "#DECBB7", width=15, height=1, command=backToHomescreen).place(x = 635, y = 320,anchor="center")
 
         screenBookBerhasil.resizable(False,False)
         screenBookBerhasil.mainloop()
