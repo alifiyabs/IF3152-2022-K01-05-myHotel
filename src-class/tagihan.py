@@ -44,6 +44,12 @@ class ClassTagihan():
             print(f"Error retrieving entry form database: {e}")
             self.databaseFail(screen)
 
+
+        def backToHome():
+            from home import ClassHome
+            ClassHome().homescreen(screen)
+        Button(screen, text = "Kembali ke Menu Utama", font = ("Helvetica", 10, "bold"), bg="#FF595E", width = 10, height = 1, command = backToHome).place(x = 75, y = 75, width=180, height=50)
+
         cur.commit()
 
     def showSectionTitle(self, screen):
