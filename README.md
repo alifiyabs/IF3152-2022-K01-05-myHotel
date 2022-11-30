@@ -23,7 +23,7 @@ Nama Penanggung Jawab : Joe Putera
 NIM : 18217035
 
 ### Check-in
-Nama Penanggung Jawab : Alifiya Brizita Shari
+Nama Penanggung Jawab : Alifiya Brizita Shary
 
 NIM : 18220069
 
