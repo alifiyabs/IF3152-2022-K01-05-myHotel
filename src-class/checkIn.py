@@ -17,7 +17,7 @@ from tkinter import ttk, messagebox
 from datetime import date
 
 pathToImg = os.path.abspath('.') + '/img'
-#pathToImg = os.path.abspath('.') + '/img' --> UNTUK WINDOWS YA
+#pathToImg = os.path.abspath('..') + '//img' --> UNTUK WINDOWS YA
 
 class ClassCheckIn():
     def homeCheckIn(self, halaman):
