@@ -2,22 +2,10 @@ import sys
 import mariadb
 import tkinter as tk
 from checkOut import *
+from connectdatabase import *
 
 class ClassTagihan():
     def infotagihan(self, NIKPelanggan, noKamar, screen):
-        # Koneksi ke database
-        try:
-            conn = mariadb.connect (
-                user = 'root',
-                password = '*****',
-                host = 'localhost',
-                port = 3306,
-                database = 'myhotel'
-            )
-        except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
-            self.databaseFail(screen)
-
         # Execute query
         cur = conn.cursor()
         try:

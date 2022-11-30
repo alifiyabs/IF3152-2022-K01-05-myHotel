@@ -9,7 +9,7 @@ import datetime
 import tkinter as tk
 from datetime import datetime
 import os
-import mysql.connector
+# import mysql.connector
 from tkcalendar import Calendar
 from tkinter import *
 from tkinter import ttk, messagebox

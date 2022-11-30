@@ -2,7 +2,8 @@
 # Notes: Replace port dengan port yang sesuai
 
 import mariadb
-# import mysql.connector   
+# import mysql.connector
+import sys
 
 try:
     conn = mariadb.connect (
@@ -14,3 +15,4 @@ try:
     )
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB Platform: {e}")
+    sys.exit(1)

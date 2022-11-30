@@ -11,7 +11,7 @@ from tkinter import ttk, messagebox
 from tkcalendar import Calendar
 from datetime import date
 from tagihan import ClassTagihan
-from connectdatabase import conn
+from connectdatabase import *
 import tkinter as tk
 import datetime
 import os
